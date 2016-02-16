@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78ED51C73276500E21F73 /* AppDelegate.swift */; };
-		01B78ED81C73276500E21F73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78ED71C73276500E21F73 /* ViewController.swift */; };
+		01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78ED71C73276500E21F73 /* MapViewController.swift */; };
 		01B78EDB1C73276500E21F73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78ED91C73276500E21F73 /* Main.storyboard */; };
 		01B78EDD1C73276500E21F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B78EDC1C73276500E21F73 /* Assets.xcassets */; };
 		01B78EE01C73276500E21F73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78EDE1C73276500E21F73 /* LaunchScreen.storyboard */; };
 		01B78EEB1C73276500E21F73 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78EEA1C73276500E21F73 /* OnTheMapTests.swift */; };
 		01B78EF61C73276500E21F73 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78EF51C73276500E21F73 /* OnTheMapUITests.swift */; };
+		01B78F441C734D5900E21F73 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F431C734D5900E21F73 /* ListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		01B78ED21C73276500E21F73 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B78ED51C73276500E21F73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		01B78ED71C73276500E21F73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01B78ED71C73276500E21F73 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		01B78EDA1C73276500E21F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01B78EDC1C73276500E21F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01B78EDF1C73276500E21F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		01B78EF11C73276500E21F73 /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B78EF51C73276500E21F73 /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		01B78EF71C73276500E21F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01B78F431C734D5900E21F73 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				01B78ED51C73276500E21F73 /* AppDelegate.swift */,
-				01B78ED71C73276500E21F73 /* ViewController.swift */,
+				01B78F451C734D7600E21F73 /* Controllers */,
 				01B78ED91C73276500E21F73 /* Main.storyboard */,
 				01B78EDC1C73276500E21F73 /* Assets.xcassets */,
 				01B78EDE1C73276500E21F73 /* LaunchScreen.storyboard */,
@@ -123,6 +125,15 @@
 				01B78EF71C73276500E21F73 /* Info.plist */,
 			);
 			path = OnTheMapUITests;
+			sourceTree = "<group>";
+		};
+		01B78F451C734D7600E21F73 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01B78ED71C73276500E21F73 /* MapViewController.swift */,
+				01B78F431C734D5900E21F73 /* ListTableViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B78ED81C73276500E21F73 /* ViewController.swift in Sources */,
+				01B78F441C734D5900E21F73 /* ListTableViewController.swift in Sources */,
+				01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */,
 				01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +496,7 @@
 				01B78EFC1C73276500E21F73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01B78EFD1C73276500E21F73 /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				01B78EFF1C73276500E21F73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01B78F001C73276500E21F73 /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				01B78F021C73276500E21F73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

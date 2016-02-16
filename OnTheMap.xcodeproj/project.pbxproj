@@ -19,6 +19,13 @@
 		01B78F491C7358DC00E21F73 /* LinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F481C7358DC00E21F73 /* LinkViewController.swift */; };
 		01B78F4B1C7359D900E21F73 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F4A1C7359D900E21F73 /* LoginViewController.swift */; };
 		01B78F501C735A7B00E21F73 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F4F1C735A7B00E21F73 /* Student.swift */; };
+		01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F511C73705600E21F73 /* ParseConstants.swift */; };
+		01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F541C73774300E21F73 /* UdacityClient.swift */; };
+		01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F561C73774D00E21F73 /* ParseClient.swift */; };
+		01B78F5D1C73780100E21F73 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5C1C73780100E21F73 /* ParseConvenience.swift */; };
+		01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */; };
+		01B78F611C73781700E21F73 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F601C73781700E21F73 /* UdacityConvenience.swift */; };
+		01B78F631C73784900E21F73 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F621C73784900E21F73 /* AuthController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +64,13 @@
 		01B78F481C7358DC00E21F73 /* LinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkViewController.swift; path = ../LinkViewController.swift; sourceTree = "<group>"; };
 		01B78F4A1C7359D900E21F73 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		01B78F4F1C735A7B00E21F73 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		01B78F511C73705600E21F73 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = OnTheMap/ParseConstants.swift; sourceTree = "<group>"; };
+		01B78F541C73774300E21F73 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		01B78F561C73774D00E21F73 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		01B78F5C1C73780100E21F73 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		01B78F601C73781700E21F73 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		01B78F621C73784900E21F73 /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,9 +182,40 @@
 			children = (
 				01B78F4F1C735A7B00E21F73 /* Student.swift */,
 				01B78ED51C73276500E21F73 /* AppDelegate.swift */,
+				01B78F531C73771200E21F73 /* Clients */,
 			);
 			name = Model;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		01B78F531C73771200E21F73 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				01B78F5B1C7377BB00E21F73 /* UdacityClient */,
+				01B78F5A1C7377B300E21F73 /* ParseClient */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		01B78F5A1C7377B300E21F73 /* ParseClient */ = {
+			isa = PBXGroup;
+			children = (
+				01B78F511C73705600E21F73 /* ParseConstants.swift */,
+				01B78F5C1C73780100E21F73 /* ParseConvenience.swift */,
+				01B78F561C73774D00E21F73 /* ParseClient.swift */,
+			);
+			name = ParseClient;
+			sourceTree = "<group>";
+		};
+		01B78F5B1C7377BB00E21F73 /* UdacityClient */ = {
+			isa = PBXGroup;
+			children = (
+				01B78F621C73784900E21F73 /* AuthController.swift */,
+				01B78F541C73774300E21F73 /* UdacityClient.swift */,
+				01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */,
+				01B78F601C73781700E21F73 /* UdacityConvenience.swift */,
+			);
+			name = UdacityClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,13 +350,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B78F5D1C73780100E21F73 /* ParseConvenience.swift in Sources */,
 				01B78F4B1C7359D900E21F73 /* LoginViewController.swift in Sources */,
 				01B78F441C734D5900E21F73 /* ListTableViewController.swift in Sources */,
 				01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */,
 				01B78F491C7358DC00E21F73 /* LinkViewController.swift in Sources */,
+				01B78F631C73784900E21F73 /* AuthController.swift in Sources */,
+				01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */,
 				01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */,
 				01B78F501C735A7B00E21F73 /* Student.swift in Sources */,
+				01B78F611C73781700E21F73 /* UdacityConvenience.swift in Sources */,
+				01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */,
 				01B78F471C7358CD00E21F73 /* LocationViewController.swift in Sources */,
+				01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */,
+				01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

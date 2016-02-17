@@ -36,12 +36,12 @@
                     <navigationItem key="navigationItem" id="9KU-OH-vwy">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="gL3-Qs-X9z"/>
                         <rightBarButtonItems>
-                            <barButtonItem image="refresh" id="pQv-pf-ll0">
+                            <barButtonItem image="refresh" id="CpE-dZ-8Kf">
                                 <connections>
-                                    <action selector="reloadPage:" destination="BYZ-38-t0r" id="To7-0u-rua"/>
+                                    <action selector="reloadPage:" destination="BYZ-38-t0r" id="wnh-jE-4KC"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="deletePin" id="yQS-Sv-IdK"/>
+                            <barButtonItem image="deletePin" id="hRi-XI-EsI"/>
                             <barButtonItem image="addPin" id="hva-uP-xNt"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -167,34 +167,34 @@
             </objects>
             <point key="canvasLocation" x="4346" y="761"/>
         </scene>
-        <!--On The Map-->
+        <!--List Table View Controller-->
         <scene sceneID="0sQ-w3-ygg">
             <objects>
                 <tableViewController id="YEy-yG-PB0" customClass="ListTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="HaQ-iV-sTr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="HaQ-iV-sTr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" textLabel="AcW-PI-SXk" detailTextLabel="M4z-dk-agc" style="IBUITableViewCellStyleSubtitle" id="x2e-UB-slL">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="AcW-PI-SXk" detailTextLabel="M4z-dk-agc" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="x2e-UB-slL">
+                                <rect key="frame" x="0.0" y="92" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2e-UB-slL" id="b0B-d0-Rqo">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AcW-PI-SXk">
-                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AcW-PI-SXk">
+                                            <rect key="frame" x="15" y="14" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M4z-dk-agc">
-                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <rect key="frame" x="15" y="35" width="43" height="16.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
+                                            <color key="textColor" red="0.42655369639396667" green="0.47584608197212219" blue="0.48026475310325623" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -206,8 +206,17 @@
                             <outlet property="delegate" destination="YEy-yG-PB0" id="42P-ww-Fxa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="On The Map" id="MQW-Wb-FQh">
+                    <navigationItem key="navigationItem" id="MQW-Wb-FQh">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="PmO-X0-MBw"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="refresh" id="pQv-pf-ll0">
+                                <connections>
+                                    <action selector="reloadPage:" destination="BYZ-38-t0r" id="To7-0u-rua"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="deletePin" id="yQS-Sv-IdK"/>
+                            <barButtonItem image="addPin" id="P2y-gg-bW5"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcv-Ls-7iZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,6 +330,7 @@
         <!--Navigation Controller-->
         <scene sceneID="RYm-bj-AVv">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ha9-Q1-mWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wgl-vx-OEt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="BAr-th-ZbR"/>
                     <toolbarItems/>
@@ -333,7 +343,6 @@
                         <segue destination="YEy-yG-PB0" kind="relationship" relationship="rootViewController" id="QQd-Oo-opQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ha9-Q1-mWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1424" y="1191"/>
         </scene>

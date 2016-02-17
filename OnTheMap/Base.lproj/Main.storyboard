@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Zyj-NO-I4j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Ko-XM-q3K">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -235,55 +236,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Udacity Logo" translatesAutoresizingMaskIntoConstraints="NO" id="b0N-0f-w6V">
-                                <rect key="frame" x="248" y="94" width="104" height="104"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wn-7z-V8P">
-                                <rect key="frame" x="216" y="216" width="168" height="29"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4B-6G-tud">
-                                <rect key="frame" x="20" y="288" width="560" height="30"/>
-                                <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="0.61807650862068964" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-Km-PaM">
-                                <rect key="frame" x="20" y="326" width="560" height="30"/>
-                                <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="0.61535560344827589" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iww-vZ-l8k">
-                                <rect key="frame" x="20" y="373" width="560" height="41"/>
-                                <color key="backgroundColor" red="0.85262101888656616" green="0.42218321561813354" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-pU-8rT">
-                                <rect key="frame" x="20" y="436" width="560" height="32"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-gf-cS5">
-                                <rect key="frame" x="20" y="490" width="560" height="41"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <state key="normal" title="Log in with Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugt-2n-MOW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity Logo" translatesAutoresizingMaskIntoConstraints="NO" id="b0N-0f-w6V">
+                                        <rect key="frame" x="248" y="98" width="104" height="104"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="104" id="Yio-7G-qux"/>
+                                            <constraint firstAttribute="width" constant="104" id="xVH-md-I6h"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wn-7z-V8P">
+                                        <rect key="frame" x="216" y="220" width="168" height="29"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="b0N-0f-w6V" firstAttribute="centerX" secondItem="Ugt-2n-MOW" secondAttribute="centerX" id="T1S-hm-RZA"/>
+                                    <constraint firstItem="0Wn-7z-V8P" firstAttribute="top" secondItem="b0N-0f-w6V" secondAttribute="bottom" constant="18" id="Yl6-A6-2Q2"/>
+                                    <constraint firstItem="0Wn-7z-V8P" firstAttribute="centerX" secondItem="Ugt-2n-MOW" secondAttribute="centerX" id="kZi-yY-eVK"/>
+                                    <constraint firstItem="b0N-0f-w6V" firstAttribute="centerY" secondItem="Ugt-2n-MOW" secondAttribute="centerY" id="t5E-0e-PGe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdh-O0-oQV">
+                                <rect key="frame" x="0.0" y="299" width="600" height="300.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-PW-hSO">
+                                        <rect key="frame" x="20" y="16" width="560" height="207"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4B-6G-tud">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="35"/>
+                                                <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="0.61807650862068964" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-Km-PaM">
+                                                <rect key="frame" x="0.0" y="43" width="560" height="35"/>
+                                                <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="0.61535560344827589" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iww-vZ-l8k">
+                                                <rect key="frame" x="0.0" y="86" width="560" height="35"/>
+                                                <color key="backgroundColor" red="0.85262101888656616" green="0.42218321561813354" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="Zyj-NO-I4j" kind="show" id="Ygg-cA-OW0"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-pU-8rT">
+                                                <rect key="frame" x="0.0" y="129" width="560" height="35"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-gf-cS5">
+                                                <rect key="frame" x="0.0" y="172" width="560" height="35"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Log in with Facebook">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JFq-PW-hSO" firstAttribute="leading" secondItem="Zdh-O0-oQV" secondAttribute="leading" constant="20" id="LIh-vT-gGg"/>
+                                    <constraint firstAttribute="trailing" secondItem="JFq-PW-hSO" secondAttribute="trailing" constant="20" id="lBk-xJ-cHR"/>
+                                    <constraint firstItem="JFq-PW-hSO" firstAttribute="top" secondItem="Zdh-O0-oQV" secondAttribute="top" constant="16" id="uVu-Uu-eRN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97670525312423706" green="0.60546392202377319" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zdh-O0-oQV" firstAttribute="top" secondItem="Ugt-2n-MOW" secondAttribute="bottom" constant="-1" id="80Z-Wr-uPN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zdh-O0-oQV" secondAttribute="trailing" constant="-20" id="GUd-3N-UzW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ugt-2n-MOW" secondAttribute="trailing" constant="-20" id="UMN-2e-yUc"/>
+                            <constraint firstItem="Ugt-2n-MOW" firstAttribute="top" secondItem="R8y-y6-Pd4" secondAttribute="topMargin" id="XMg-NY-f5m"/>
+                            <constraint firstItem="Ugt-2n-MOW" firstAttribute="height" secondItem="Zdh-O0-oQV" secondAttribute="height" id="ZKe-qO-egq"/>
+                            <constraint firstItem="Ugt-2n-MOW" firstAttribute="leading" secondItem="R8y-y6-Pd4" secondAttribute="leadingMargin" constant="-20" id="cW7-n8-PXM"/>
+                            <constraint firstItem="Zdh-O0-oQV" firstAttribute="leading" secondItem="R8y-y6-Pd4" secondAttribute="leadingMargin" constant="-20" id="jwL-fV-5AF"/>
+                            <constraint firstItem="KYh-gx-d1n" firstAttribute="top" secondItem="Zdh-O0-oQV" secondAttribute="bottom" id="w1q-Mv-Ppu"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abb-e7-c74" userLabel="First Responder" sceneMemberID="firstResponder"/>

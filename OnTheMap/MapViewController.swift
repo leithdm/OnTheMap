@@ -119,7 +119,7 @@ class MapViewController: UIViewController {
 			if title != nil && message != nil {
 				let errorAlert =
 				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-				errorAlert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+				errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(errorAlert, animated: true, completion: nil)
 			}
 		}
@@ -159,8 +159,14 @@ extension MapViewController: MKMapViewDelegate {
 		if control == view.rightCalloutAccessoryView {
 			let app = UIApplication.sharedApplication()
 			
-			if let toOpen = view.annotation?.subtitle! {
-				app.openURL(NSURL(string: toOpen)!)
+			if let urlString = view.annotation?.subtitle! {
+				if let url = NSURL(string: urlString) {
+					if app.canOpenURL(url) {
+						app.openURL(url)
+					} else {
+						showAlertViewController("Whoops!", message: "Looks like this student put in an incorrect URL")
+					}
+				}
 			}
 		}
 	}

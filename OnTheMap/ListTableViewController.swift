@@ -19,6 +19,9 @@ class ListTableViewController: UITableViewController {
 		students = sharedSession?.students
 	}
 	
+	@IBAction func reloadData(sender: UIBarButtonItem) {
+		tableView.reloadData()
+	}
 	// MARK: - Table view data source
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

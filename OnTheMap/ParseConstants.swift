@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
 //
 
-// MARK: - TMDBClient (Constants)
+// MARK: - Parse Constants
 
 extension ParseClient {
 	
@@ -18,7 +18,7 @@ extension ParseClient {
 	
 	// MARK:- Methods
 	struct Methods {
-		static let StudentLocationURL = "https://api.parse.com/1/classes/StudentLocation"
+		static let StudentLocationURL = "https://api.parse.com/1/classes/StudentLocation/"
 	}
 	
 	//MARK:- Parameters
@@ -34,5 +34,4 @@ extension ParseClient {
 		static let ParseAPIKeyHeader = "X-Parse-Application-Id"
 		static let ParseAppIDHeader = "X-Parse-REST-API-Key"
 	}
-	
 }

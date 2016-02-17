@@ -22,9 +22,7 @@
 		01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F511C73705600E21F73 /* ParseConstants.swift */; };
 		01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F541C73774300E21F73 /* UdacityClient.swift */; };
 		01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F561C73774D00E21F73 /* ParseClient.swift */; };
-		01B78F5D1C73780100E21F73 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5C1C73780100E21F73 /* ParseConvenience.swift */; };
 		01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */; };
-		01B78F611C73781700E21F73 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F601C73781700E21F73 /* UdacityConvenience.swift */; };
 		01B78F631C73784900E21F73 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F621C73784900E21F73 /* AuthController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,9 +65,7 @@
 		01B78F511C73705600E21F73 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = OnTheMap/ParseConstants.swift; sourceTree = "<group>"; };
 		01B78F541C73774300E21F73 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		01B78F561C73774D00E21F73 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
-		01B78F5C1C73780100E21F73 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
-		01B78F601C73781700E21F73 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		01B78F621C73784900E21F73 /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				01B78F511C73705600E21F73 /* ParseConstants.swift */,
-				01B78F5C1C73780100E21F73 /* ParseConvenience.swift */,
 				01B78F561C73774D00E21F73 /* ParseClient.swift */,
 			);
 			name = ParseClient;
@@ -213,7 +208,6 @@
 				01B78F621C73784900E21F73 /* AuthController.swift */,
 				01B78F541C73774300E21F73 /* UdacityClient.swift */,
 				01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */,
-				01B78F601C73781700E21F73 /* UdacityConvenience.swift */,
 			);
 			name = UdacityClient;
 			sourceTree = "<group>";
@@ -350,7 +344,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B78F5D1C73780100E21F73 /* ParseConvenience.swift in Sources */,
 				01B78F4B1C7359D900E21F73 /* LoginViewController.swift in Sources */,
 				01B78F441C734D5900E21F73 /* ListTableViewController.swift in Sources */,
 				01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */,
@@ -359,7 +352,6 @@
 				01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */,
 				01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */,
 				01B78F501C735A7B00E21F73 /* Student.swift in Sources */,
-				01B78F611C73781700E21F73 /* UdacityConvenience.swift in Sources */,
 				01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */,
 				01B78F471C7358CD00E21F73 /* LocationViewController.swift in Sources */,
 				01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */,
@@ -507,6 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OnTheMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darrenmartinleith.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -519,6 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OnTheMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darrenmartinleith.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";

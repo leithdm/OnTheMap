@@ -36,13 +36,18 @@
                     <navigationItem key="navigationItem" id="9KU-OH-vwy">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="gL3-Qs-X9z"/>
                         <rightBarButtonItems>
-                            <barButtonItem image="refresh" id="pQv-pf-ll0"/>
+                            <barButtonItem image="refresh" id="pQv-pf-ll0">
+                                <connections>
+                                    <action selector="reloadPage:" destination="BYZ-38-t0r" id="To7-0u-rua"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="deletePin" id="yQS-Sv-IdK"/>
                             <barButtonItem image="addPin" id="hva-uP-xNt"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="8M0-9l-yeF" id="QKQ-Z2-KQa"/>
+                        <outlet property="reload" destination="pQv-pf-ll0" id="g5D-4N-Duh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

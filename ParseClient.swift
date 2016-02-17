@@ -10,11 +10,28 @@ import Foundation
 
 class ParseClient: NSObject {
 	
-	//shared instance of Parse Client
+	//MARK:- global variables for a session
+	
+	//shared singleton instance of the Parse Client
 	static let sharedInstance = ParseClient()
 	
-	//shared session
-	var session = NSURLSession.sharedSession()
+	//current user logged in
+	var currentStudent: Student?
+	
+	//array of students
+	var students : [Student]?
+	
+	//is the student already on the map
+	var onTheMap : Bool?
+	
+	let session: NSURLSession
+	
+	
+	//MARK: - lifecycle method
+	override init() {
+		session = NSURLSession.sharedSession()
+		super.init()
+	}
 	
 	
 	//MARK: - get Student Locations
@@ -24,20 +41,18 @@ class ParseClient: NSObject {
 		let methodParameters = ParseClient.Parameters.methodParameters
 		
 		let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Methods.StudentLocationURL + escapedParameters(methodParameters))!)
-		request.addValue(ParseClient.Keys.ParseAPIKey, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAPIKeyHeader)
-		request.addValue(ParseClient.Keys.ParseAppId, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAppIDHeader)
+		request.addValue(ParseClient.Keys.ParseAppId, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAPIKeyHeader)
+		request.addValue(ParseClient.Keys.ParseAPIKey, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAppIDHeader)
 		request.HTTPMethod = "GET"
 		
 		//create task
 		let task = session.dataTaskWithRequest(request) { data, response, error in
-			
 			
 			func sendError(error: String) {
 				print(error)
 				let userInfo = [NSLocalizedDescriptionKey : error]
 				completionHandlerForGet(result: nil, error: NSError(domain: "getStudentLocations", code: 1, userInfo: userInfo))
 			}
-			
 			
 			/* GUARD: Was there an error? */
 			guard (error == nil) else {
@@ -57,49 +72,31 @@ class ParseClient: NSObject {
 				return
 			}
 			
-			self.parseLocation(data, completionHandler: completionHandlerForGet)
+			self.parseStudentLocation(data, completionHandler: completionHandlerForGet)
 		}
 		task.resume()
 	}
 	
 	
-	//MARK: - parseLocation
+	//MARK: - parse student location
 	
-	func parseLocation(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+	func parseStudentLocation(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
 		
-		var parsedLocation: AnyObject!
+		var parsedStudentLocation: AnyObject!
 		
 		do  {
-			parsedLocation = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+			parsedStudentLocation = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject]
+			if let students = parsedStudentLocation["results"] as? [[String: AnyObject]] {
+				completionHandler(result: students, error: nil)
+				return
+			}
 		} catch {
 			let userInfo = [NSLocalizedDescriptionKey : "Error retrieving the 'results' key"]
-			completionHandler(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-		}
-		if let students = parsedLocation["results"] as? [[String: AnyObject]] {
-			completionHandler(result: students, error: nil)
-			return
+			completionHandler(result: nil, error: NSError(domain: "parseStudentLocation", code: 1, userInfo: userInfo))
 		}
 	}
 	
-	
-	// MARK:- create a URL from parameters
-	private func tmdbURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
-		
-		let components = NSURLComponents()
-		components.scheme = ParseClient.Keys.ParseAppId
-		
-		
-		components.queryItems = [NSURLQueryItem]()
-		
-		for (key, value) in parameters {
-			let queryItem = NSURLQueryItem(name: key, value: "\(value)")
-			components.queryItems!.append(queryItem)
-		}
-		
-		return components.URL!
-	}
-	
-	//MARK: - escaped Parameters method
+	//MARK: - create a URL from the parameters
 	func escapedParameters(parameters: [String : AnyObject]) -> String {
 		var urlVars = [String]()
 		for (key, value) in parameters {
@@ -114,5 +111,4 @@ class ParseClient: NSObject {
 		}
 		return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
 	}
-	
 }

@@ -86,7 +86,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	//MARK: - reload student data from server
 	
 	func getStudentsFromServer() {
-		setVisibilityOfActivityView(false)
+		setActivityViewHidden(false)
 		activityIndicator.startAnimating()
 		
 		if let sharedSession = sharedSession {
@@ -100,24 +100,23 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 					
 					if studentArray.count > 0 {
 						dispatch_async(dispatch_get_main_queue()) {
-							self.stopActivityIndicator()
-							self.setVisibilityOfActivityView(true)
+							self.activityIndicator.stopAnimating()
+							self.setActivityViewHidden(true)
 							self.tableView.reloadData()
 						}
 					}
 				} else {
 					dispatch_async(dispatch_get_main_queue()) {
-						self.stopActivityIndicator()
-						self.setVisibilityOfActivityView(true)
+						self.activityIndicator.stopAnimating()
+						self.setActivityViewHidden(true)
 					}
 					if let errorString = error {
 						print(errorString.localizedDescription)
 						self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
-						self.setVisibilityOfActivityView(true)
 					} else {
 						self.showAlertViewController("Error", message: "Unable to retrieve data")
-						self.setVisibilityOfActivityView(true)
 					}
+					self.setActivityViewHidden(true)
 				}
 			}
 		}
@@ -135,15 +134,14 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		}
 	}
 	
-	func setVisibilityOfActivityView(isHidden: Bool) {
+	func setActivityViewHidden(isHidden: Bool) {
 		viewForActivityIndicator.hidden = isHidden
 	}
 	
 	
 	//initialize the activity indicator
 	func setUpActivityIndicator() {
-		setVisibilityOfActivityView(true)
-		activityIndicator.frame = CGRectMake(0, 0, self.view.frame.height, self.view.frame.width)
+		setActivityViewHidden(true)
 		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
 		activityIndicator.hidesWhenStopped = true
 		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
@@ -155,13 +153,5 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 			updates()
 		}
 	}
-	
-	//run stopAnimating activity indicator on main thread
-	func stopActivityIndicator() {
-		dispatch_async(dispatch_get_main_queue()) { () -> Void in
-			self.activityIndicator.stopAnimating()
-		}
-	}
-	
 }
 

@@ -18,11 +18,14 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		getStudentsFromServer()
 	}
 	
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var viewForActivityIndicator: UIView!
+	
 	//MARK: - properties
 	
 	var students: [Student]?
 	var sharedSession: ParseClient?
-	var activityIndicator = UIActivityIndicatorView()
+//	var activityIndicator = UIActivityIndicatorView()
 	
 	//MARK: - lifecycle methods
 	
@@ -83,6 +86,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	//MARK: - reload student data from server
 	
 	func getStudentsFromServer() {
+		setVisibilityOfActivityView(false)
 		activityIndicator.startAnimating()
 		
 		if let sharedSession = sharedSession {
@@ -97,18 +101,22 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 					if studentArray.count > 0 {
 						dispatch_async(dispatch_get_main_queue()) {
 							self.stopActivityIndicator()
+							self.setVisibilityOfActivityView(true)
 							self.tableView.reloadData()
 						}
 					}
 				} else {
 					dispatch_async(dispatch_get_main_queue()) {
 						self.stopActivityIndicator()
+						self.setVisibilityOfActivityView(true)
 					}
 					if let errorString = error {
 						print(errorString.localizedDescription)
 						self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
+						self.setVisibilityOfActivityView(true)
 					} else {
 						self.showAlertViewController("Error", message: "Unable to retrieve data")
+						self.setVisibilityOfActivityView(true)
 					}
 				}
 			}
@@ -117,31 +125,28 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	//show an AlertViewController
 	func showAlertViewController(title: String? , message: String?) {
-		
 		performUIUpdatesOnMain {
 			self.activityIndicator.stopAnimating()
 			if title != nil && message != nil {
-				let errorAlert =
-				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+				let errorAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
 				errorAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(errorAlert, animated: true, completion: nil)
 			}
 		}
 	}
 	
+	func setVisibilityOfActivityView(isHidden: Bool) {
+		viewForActivityIndicator.hidden = isHidden
+	}
 	
 	
 	//initialize the activity indicator
 	func setUpActivityIndicator() {
-		activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-		activityIndicator.center = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
+		setVisibilityOfActivityView(true)
+		activityIndicator.frame = CGRectMake(0, 0, self.view.frame.height, self.view.frame.width)
 		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
 		activityIndicator.hidesWhenStopped = true
 		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-		
-		let newView = UIView(frame: CGRectMake(0 , 0 , view.bounds.size.width, view.bounds.size.height))
-		newView.addSubview(activityIndicator)
-		tableView.addSubview(newView)
 	}
 	
 	//run on main thread

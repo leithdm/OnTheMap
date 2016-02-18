@@ -47,7 +47,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="8M0-9l-yeF" id="QKQ-Z2-KQa"/>
-                        <outlet property="reload" destination="pQv-pf-ll0" id="g5D-4N-Duh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,54 +165,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tpn-6D-m11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4346" y="761"/>
-        </scene>
-        <!--List Table View Controller-->
-        <scene sceneID="0sQ-w3-ygg">
-            <objects>
-                <tableViewController id="YEy-yG-PB0" customClass="ListTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="HaQ-iV-sTr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="AcW-PI-SXk" detailTextLabel="M4z-dk-agc" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="x2e-UB-slL">
-                                <rect key="frame" x="0.0" y="28" width="600" height="65"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2e-UB-slL" id="b0B-d0-Rqo">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AcW-PI-SXk">
-                                            <rect key="frame" x="15" y="14" width="44" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M4z-dk-agc">
-                                            <rect key="frame" x="15" y="35" width="43" height="16.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
-                                            <color key="textColor" red="0.42655369639396667" green="0.47584608197212219" blue="0.48026475310325623" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="MQW-Wb-FQh">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="PmO-X0-MBw"/>
-                        <rightBarButtonItems>
-                            <barButtonItem image="refresh" id="pQv-pf-ll0"/>
-                            <barButtonItem image="deletePin" id="yQS-Sv-IdK"/>
-                            <barButtonItem image="addPin" id="P2y-gg-bW5"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kcv-Ls-7iZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2852" y="1439"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="glp-Kg-L0r">
@@ -439,7 +390,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p7A-4z-S19">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="UFq-8v-PfD" detailTextLabel="GMv-cu-sNl" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="UY7-Uh-tAO">
@@ -473,13 +424,30 @@
                                     <outlet property="delegate" destination="YWb-Mj-H7t" id="RdX-Ly-I2P"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJT-IQ-jF6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FAK-ne-Pp1">
+                                        <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="FAK-ne-Pp1" firstAttribute="centerY" secondItem="SJT-IQ-jF6" secondAttribute="centerY" id="1WN-qX-cL6"/>
+                                    <constraint firstItem="FAK-ne-Pp1" firstAttribute="centerX" secondItem="SJT-IQ-jF6" secondAttribute="centerX" id="Zhe-FI-HUe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="SJT-IQ-jF6" secondAttribute="bottom" id="2kh-NQ-BAR"/>
                             <constraint firstAttribute="trailing" secondItem="p7A-4z-S19" secondAttribute="trailing" id="4d8-il-Td3"/>
+                            <constraint firstItem="SJT-IQ-jF6" firstAttribute="leading" secondItem="Dle-GO-VoN" secondAttribute="leading" id="ETD-hr-RPF"/>
                             <constraint firstItem="p7A-4z-S19" firstAttribute="top" secondItem="DeF-1M-Mae" secondAttribute="bottom" constant="-64" id="Hia-5E-t3M"/>
-                            <constraint firstItem="K1n-yj-pxq" firstAttribute="top" secondItem="p7A-4z-S19" secondAttribute="bottom" id="Odb-C7-Lz7"/>
+                            <constraint firstItem="K1n-yj-pxq" firstAttribute="top" secondItem="p7A-4z-S19" secondAttribute="bottom" constant="-49" id="Odb-C7-Lz7"/>
+                            <constraint firstItem="SJT-IQ-jF6" firstAttribute="top" secondItem="Dle-GO-VoN" secondAttribute="top" id="Wx8-oa-Dxa"/>
                             <constraint firstItem="p7A-4z-S19" firstAttribute="leading" secondItem="Dle-GO-VoN" secondAttribute="leading" id="Z1Z-PF-5Em"/>
+                            <constraint firstAttribute="trailing" secondItem="SJT-IQ-jF6" secondAttribute="trailing" id="yIG-xN-jIO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RMn-Fg-QMn">
@@ -495,12 +463,14 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="FAK-ne-Pp1" id="ihb-xQ-8Yg"/>
                         <outlet property="tableView" destination="p7A-4z-S19" id="IwH-09-see"/>
+                        <outlet property="viewForActivityIndicator" destination="SJT-IQ-jF6" id="G1f-Ip-nkg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bA-V5-dhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2165" y="1213"/>
+            <point key="canvasLocation" x="2172" y="1191"/>
         </scene>
     </scenes>
     <resources>

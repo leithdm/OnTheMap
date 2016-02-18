@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	
+	@IBOutlet weak var tableView: UITableView!
 	
 	//MARK: - outlets
 	
@@ -35,11 +37,11 @@ class ListTableViewController: UITableViewController {
 	
 	// MARK: - Table view data source
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let count = students?.count {
 			return count
 		} else {
@@ -48,7 +50,7 @@ class ListTableViewController: UITableViewController {
 	}
 	
 	//cell for row at index path
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 		if let students = students {
 			let student = students[indexPath.row]
@@ -63,7 +65,7 @@ class ListTableViewController: UITableViewController {
 	}
 	
 	//did select row
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		if let students = students {
 			if let URL = students[indexPath.row].mediaURL {
 				let app = UIApplication.sharedApplication()
@@ -126,6 +128,8 @@ class ListTableViewController: UITableViewController {
 			}
 		}
 	}
+	
+	
 	
 	//initialize the activity indicator
 	func setUpActivityIndicator() {

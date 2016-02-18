@@ -10,22 +10,32 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
 	
+	//MARK: - outlets
+	
+	@IBAction func reloadData(sender: UIBarButtonItem) {
+		getStudentsFromServer()
+	}
+	
+	//MARK: - properties
+	
 	var students: [Student]?
 	var sharedSession: ParseClient?
+	var activityIndicator = UIActivityIndicatorView()
+	
+	//MARK: - lifecycle methods
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		sharedSession = ParseClient.sharedInstance
 		students = sharedSession?.students
+		setUpActivityIndicator()
+		
 	}
 	
-	@IBAction func reloadData(sender: UIBarButtonItem) {
-		tableView.reloadData()
-	}
 	// MARK: - Table view data source
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		// #warning Incomplete implementation, return the number of sections
 		return 1
 	}
 	
@@ -48,6 +58,7 @@ class ListTableViewController: UITableViewController {
 				cell.imageView?.image = UIImage(named: "user")
 			}
 		}
+		activityIndicator.stopAnimating()
 		return cell
 	}
 	
@@ -67,11 +78,46 @@ class ListTableViewController: UITableViewController {
 		}
 	}
 	
+	//MARK: - reload student data from server
+	
+	func getStudentsFromServer() {
+		activityIndicator.startAnimating()
+		
+		if let sharedSession = sharedSession {
+			sharedSession.getStudentLocations { (result, error) -> Void in
+				
+				if let students = result as? [[String: AnyObject]] {
+					var studentArray = [Student]()
+					for studentData in students {
+						studentArray.append(Student(dictionary: studentData))
+					}
+					
+					if studentArray.count > 0 {
+						dispatch_async(dispatch_get_main_queue()) {
+							self.stopActivityIndicator()
+							self.tableView.reloadData()
+						}
+					}
+				} else {
+					dispatch_async(dispatch_get_main_queue()) {
+						self.stopActivityIndicator()
+					}
+					if let errorString = error {
+						print(errorString.localizedDescription)
+						self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
+					} else {
+						self.showAlertViewController("Error", message: "Unable to retrieve data")
+					}
+				}
+			}
+		}
+	}
+	
 	//show an AlertViewController
 	func showAlertViewController(title: String? , message: String?) {
 		
 		performUIUpdatesOnMain {
-			//self.activityIndicator.stopAnimating()
+			self.activityIndicator.stopAnimating()
 			if title != nil && message != nil {
 				let errorAlert =
 				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -81,10 +127,30 @@ class ListTableViewController: UITableViewController {
 		}
 	}
 	
+	//initialize the activity indicator
+	func setUpActivityIndicator() {
+		activityIndicator.frame = CGRectMake(0, 0, 40, 40)
+		activityIndicator.center = CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)
+		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
+		activityIndicator.hidesWhenStopped = true
+		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+		
+		let newView = UIView(frame: CGRectMake(0 , 0 , view.bounds.size.width, view.bounds.size.height))
+		newView.addSubview(activityIndicator)
+		tableView.addSubview(newView)
+	}
+	
 	//run on main thread
 	func performUIUpdatesOnMain(updates: () -> Void) {
 		dispatch_async(dispatch_get_main_queue()) {
 			updates()
+		}
+	}
+	
+	//run stopAnimating activity indicator on main thread
+	func stopActivityIndicator() {
+		dispatch_async(dispatch_get_main_queue()) { () -> Void in
+			self.activityIndicator.stopAnimating()
 		}
 	}
 	

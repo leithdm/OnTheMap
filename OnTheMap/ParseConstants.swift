@@ -1,9 +1,9 @@
 //
-//  TMDBConstants.swift
-//  TheMovieManager
+//  ParseConstants.swift
+//  OnTheMap
 //
-//  Created by Jarrod Parkes on 2/11/15.
-//  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
+//  Created by Darren Leith on 16/02/2016.
+//  Copyright © 2016 Darren Leith. All rights reserved.
 //
 
 // MARK: - Parse Constants

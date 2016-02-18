@@ -24,8 +24,8 @@ class ParseClient: NSObject {
 	//is the student already on the map
 	var onTheMap : Bool?
 	
+	//NSURLSession variable
 	let session: NSURLSession
-	
 	
 	//MARK: - lifecycle method
 	override init() {

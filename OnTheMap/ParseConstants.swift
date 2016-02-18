@@ -25,7 +25,7 @@ extension ParseClient {
 	struct Parameters {
 		static let methodParameters = [
 			"order": "-createdAt,-updatedAt",
-			"limit": 100,
+			"limit": 1000,
 		]
 	}
 	

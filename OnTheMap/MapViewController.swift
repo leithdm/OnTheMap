@@ -18,31 +18,32 @@ class MapViewController: UIViewController {
 	
 	//MARK: - properties
 	var annotations = [MKPointAnnotation]()
+	var activityIndicator = UIActivityIndicatorView()
 	
 	
 	//MARK: - lifecycle methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		mapView.delegate = self
 		
-	}
-	
-	override func viewDidAppear(animated: Bool) {
+		setUpActivityIndicator()
 		getStudentsFromServer()
 	}
 	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+	}
 	
 	//MARK: - get students from server
 	
 	func getStudentsFromServer() {
-		//activityIndicator.startAnimating()
+		activityIndicator.startAnimating()
 		
 		ParseClient.sharedInstance.getStudentLocations { (result, error) -> Void in
 			
 			if let students = result as? [[String: AnyObject]] {
-				
 				var studentArray = [Student]()
-				
 				for studentData in students {
 					studentArray.append(Student(dictionary: studentData))
 				}
@@ -57,17 +58,21 @@ class MapViewController: UIViewController {
 							self.addAnnotationsToMap()
 						}
 					}
+					self.stopActivityIndicator()
 				}
 			} else {
+				dispatch_async(dispatch_get_main_queue()) {
+					self.stopActivityIndicator()
+				}
 				if let errorString = error {
-					self.showAlertViewController("Error", message: String(errorString.userInfo))
+					print(errorString.localizedDescription)
+					self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
 				} else {
 					self.showAlertViewController("Error", message: "Unable to retrieve data")
 				}
 			}
 		}
 	}
-	
 	
 	//MARK: - add annotations to the map
 	
@@ -113,9 +118,8 @@ class MapViewController: UIViewController {
 	
 	//show an AlertViewController
 	func showAlertViewController(title: String? , message: String?) {
-		
 		performUIUpdatesOnMain {
-			//self.activityIndicator.stopAnimating()
+			self.stopActivityIndicator()
 			if title != nil && message != nil {
 				let errorAlert =
 				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -125,10 +129,26 @@ class MapViewController: UIViewController {
 		}
 	}
 	
+	//initialize the activity indicator
+	func setUpActivityIndicator() {
+		activityIndicator.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+		mapView.addSubview(activityIndicator)
+		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
+		activityIndicator.hidesWhenStopped = true
+		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+	}
+	
 	//run on main thread
 	func performUIUpdatesOnMain(updates: () -> Void) {
 		dispatch_async(dispatch_get_main_queue()) {
 			updates()
+		}
+	}
+	
+	//run stopAnimating activity indicator on main thread
+	func stopActivityIndicator() {
+		dispatch_async(dispatch_get_main_queue()) { () -> Void in
+			self.activityIndicator.stopAnimating()
 		}
 	}
 }

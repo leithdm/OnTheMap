@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8M0-9l-yeF">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8M0-9l-yeF">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="92x-Px-aKj"/>
                                 </connections>
@@ -249,14 +249,14 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-Km-PaM">
-                                                <rect key="frame" x="0.0" y="72.5" width="584" height="56"/>
+                                                <rect key="frame" x="0.0" y="72" width="584" height="56"/>
                                                 <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iww-vZ-l8k">
-                                                <rect key="frame" x="0.0" y="144.5" width="584" height="56.5"/>
+                                                <rect key="frame" x="0.0" y="144" width="584" height="56.5"/>
                                                 <color key="backgroundColor" red="0.85262101888656616" green="0.42218321561813354" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                 <state key="normal" title="Login">
@@ -306,12 +306,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PX1-gW-iAB">
                                 <rect key="frame" x="0.0" y="399" width="600" height="201"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-pU-8rT">
+                                        <rect key="frame" x="8" y="20" width="584" height="24.5"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-gf-cS5">
-                                        <rect key="frame" x="8" y="91" width="584" height="50"/>
+                                        <rect key="frame" x="8" y="131" width="584" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="584" id="j9C-ZP-1J8"/>
-                                            <constraint firstAttribute="height" constant="50" id="oYb-v1-eNx"/>
+                                            <constraint firstAttribute="height" constant="50" id="aag-vD-0Ks"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <state key="normal" title="Log in with Facebook">
@@ -319,19 +324,13 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-pU-8rT">
-                                        <rect key="frame" x="8" y="20" width="584" height="24.5"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ULy-pU-8rT" secondAttribute="trailing" constant="8" id="0ez-dQ-JrE"/>
-                                    <constraint firstItem="ULy-pU-8rT" firstAttribute="top" secondItem="PX1-gW-iAB" secondAttribute="top" constant="20" id="PLN-4t-yni"/>
+                                    <constraint firstItem="ULy-pU-8rT" firstAttribute="top" secondItem="PX1-gW-iAB" secondAttribute="top" constant="20" symbolic="YES" id="PLN-4t-yni"/>
                                     <constraint firstItem="ULy-pU-8rT" firstAttribute="leading" secondItem="PX1-gW-iAB" secondAttribute="leading" constant="8" id="Q1n-Yp-BpJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="yfX-gf-cS5" secondAttribute="bottom" constant="60" id="YN7-cy-we6"/>
+                                    <constraint firstAttribute="bottom" secondItem="yfX-gf-cS5" secondAttribute="bottom" constant="20" symbolic="YES" id="YN7-cy-we6"/>
                                     <constraint firstAttribute="trailing" secondItem="yfX-gf-cS5" secondAttribute="trailing" constant="8" id="o1w-7K-I3V"/>
                                     <constraint firstItem="yfX-gf-cS5" firstAttribute="leading" secondItem="PX1-gW-iAB" secondAttribute="leading" constant="8" id="yOc-AX-2t6"/>
                                 </constraints>
@@ -401,7 +400,6 @@
         <!--Navigation Controller-->
         <scene sceneID="RYm-bj-AVv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ha9-Q1-mWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wgl-vx-OEt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="BAr-th-ZbR"/>
                     <toolbarItems/>
@@ -414,6 +412,7 @@
                         <segue destination="YEy-yG-PB0" kind="relationship" relationship="rootViewController" id="QQd-Oo-opQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ha9-Q1-mWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1424" y="1191"/>
         </scene>

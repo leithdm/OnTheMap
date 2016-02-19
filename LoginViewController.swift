@@ -35,13 +35,13 @@ class LoginViewController: UIViewController {
 	
 	@IBAction func login(sender: UIButton) {
 		
-		activityIndicator.startAnimating()
-		
 		//guard against blank username and passwords
 		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
 			showAlertViewController("Login error", message: "Please enter both your email and password")
 			return
 		}
+		
+		activityIndicator.startAnimating()
 		
 		UdacityClient.sharedInstance.login(email, password: password, completionHandlerForLogin: { (result, error) -> Void in
 			
@@ -54,8 +54,19 @@ class LoginViewController: UIViewController {
 				self.activityIndicator.stopAnimating()
 				self.performSegueWithIdentifier("presentMapView", sender: self)
 			})
-
+			
 		})
+	}
+	
+	//MARK: - sign up
+	
+	@IBAction func signUp(sender: UIButton) {
+		if let url = NSURL(string: UdacityClient.Methods.signUpURL) {
+			let app = UIApplication.sharedApplication()
+			if app.canOpenURL(url) {
+				app.openURL(url)
+			}
+		}
 	}
 	
 	//MARK: - helper methods

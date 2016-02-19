@@ -25,10 +25,10 @@ class UdacityClient: NSObject {
 	}
 
 	
+	//MARK: - login
 	func login(username: String, password: String, completionHandlerForLogin: (result: [String: AnyObject]?, error: String?) -> Void) {
-		
 		let request = NSMutableURLRequest(URL: NSURL(string: UdacityClient.Methods.LoginURL)!)
-		
+	
 		request.HTTPMethod = "POST"
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -61,8 +61,10 @@ class UdacityClient: NSObject {
 	}
 	
 	
+	
  // MARK: - Helper Methods
 	
+	//login parser
 	func parseLoginRequest(data data: NSData, completionHandlerForLogin: (result: [String: AnyObject]?, error: String?) -> Void) {
 		do {
 			let parsedData = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary

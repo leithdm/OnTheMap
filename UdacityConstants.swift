@@ -19,6 +19,7 @@ extension UdacityClient {
 	// MARK:- Methods
 	struct Methods {
 		static let LoginURL = "https://www.udacity.com/api/session"
+		static let signUpURL = "https://www.udacity.com/account/auth#!/signin"
 	}
 	
 	//MARK:- Parameters

@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
 		
 		//guard against blank username and passwords
 		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
-			showAlertViewController("Login error", message: "Please enter both your email and password")
+			showAlertViewController("Login Error", message: "Please enter both your email and password")
 			return
 		}
 		

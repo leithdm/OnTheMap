@@ -43,7 +43,11 @@
                                     <action selector="reloadPage:" destination="BYZ-38-t0r" id="uqf-wj-ddE"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="addPin" id="hva-uP-xNt"/>
+                            <barButtonItem image="addPin" id="hva-uP-xNt">
+                                <connections>
+                                    <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="sFS-jb-EJG"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="deletePin" id="hRi-XI-EsI"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -124,8 +128,8 @@
                                             </activityIndicatorView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
                                                 <rect key="frame" x="8" y="8" width="584" height="184"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="28"/>
+                                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="32"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -173,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbK-Vz-53c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2944" y="1191"/>
+            <point key="canvasLocation" x="2998" y="789"/>
         </scene>
         <!--Link View Controller-->
         <scene sceneID="9hp-60-PJO">
@@ -259,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tpn-6D-m11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3642" y="1191"/>
+            <point key="canvasLocation" x="3690" y="789"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="glp-Kg-L0r">
@@ -280,17 +284,17 @@
                                         <rect key="frame" x="8" y="0.0" width="584" height="201"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gut-mW-fTT">
-                                                <rect key="frame" x="0.0" y="0.0" width="584" height="57"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="584" height="56.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L4B-6G-tud">
-                                                        <rect key="frame" x="8" y="8" width="568" height="42"/>
-                                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <rect key="frame" x="8" y="8" width="568" height="41.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.77647058823529413" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.77647058823529413" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="L4B-6G-tud" firstAttribute="centerY" secondItem="gut-mW-fTT" secondAttribute="centerY" id="Icq-A9-gqI"/>
                                                     <constraint firstItem="L4B-6G-tud" firstAttribute="top" secondItem="gut-mW-fTT" secondAttribute="topMargin" id="JMM-VM-pON"/>
@@ -299,17 +303,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii5-mP-h2s">
-                                                <rect key="frame" x="0.0" y="73" width="584" height="56"/>
+                                                <rect key="frame" x="0.0" y="72" width="584" height="56"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-Km-PaM">
                                                         <rect key="frame" x="8" y="8" width="568" height="40"/>
-                                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="1" green="0.77647058823529413" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.77647058823529413" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="lcg-Km-PaM" firstAttribute="top" secondItem="ii5-mP-h2s" secondAttribute="topMargin" id="2LV-wp-zra"/>
                                                     <constraint firstItem="lcg-Km-PaM" firstAttribute="bottom" secondItem="ii5-mP-h2s" secondAttribute="bottomMargin" id="9Q8-SI-ApO"/>
@@ -318,8 +322,8 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iww-vZ-l8k">
-                                                <rect key="frame" x="0.0" y="145" width="584" height="57"/>
-                                                <color key="backgroundColor" red="0.85262101888656616" green="0.42218321561813354" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="0.0" y="144" width="584" height="56.5"/>
+                                                <color key="backgroundColor" red="0.95686274509803915" green="0.33333333333333331" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,9 +347,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PX1-gW-iAB">
                                 <rect key="frame" x="0.0" y="399" width="600" height="201"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-kB-Zqk">
-                                        <rect key="frame" x="8" y="22" width="584" height="30"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-kB-Zqk">
+                                        <rect key="frame" x="8" y="21" width="584" height="36"/>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
                                         <state key="normal" title="Don't have an account? Sign Up">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -401,7 +405,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97670525312423706" green="0.60546392202377319" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.43529411764705883" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="KYh-gx-d1n" firstAttribute="top" secondItem="PX1-gW-iAB" secondAttribute="bottom" id="2so-Ks-cSY"/>
                             <constraint firstItem="PX1-gW-iAB" firstAttribute="leading" secondItem="R8y-y6-Pd4" secondAttribute="leading" id="AdI-tI-gSE"/>
@@ -511,14 +515,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFq-8v-PfD">
-                                                    <rect key="frame" x="15" y="15" width="44" height="21"/>
+                                                    <rect key="frame" x="15" y="14" width="37" height="21.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GMv-cu-sNl">
-                                                    <rect key="frame" x="15" y="36" width="40" height="15"/>
+                                                    <rect key="frame" x="15" y="35.5" width="40" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -572,7 +576,11 @@
                                     <action selector="reloadData:" destination="YWb-Mj-H7t" id="LMe-c5-0H9"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="addPin" id="Vvx-Jd-AYw"/>
+                            <barButtonItem image="addPin" id="Vvx-Jd-AYw">
+                                <connections>
+                                    <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="AcD-3n-Qje"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="deletePin" id="wDa-K6-S0I"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -595,4 +603,7 @@
         <image name="refresh" width="22" height="22"/>
         <image name="table" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="AcD-3n-Qje"/>
+    </inferredMetricsTieBreakers>
 </document>

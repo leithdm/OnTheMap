@@ -10,7 +10,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -326,6 +326,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="L4B-6G-tud" id="2lA-lx-Dmo"/>
                         <outlet property="passwordTextField" destination="lcg-Km-PaM" id="FZK-dj-GYb"/>
+                        <segue destination="Zyj-NO-I4j" kind="presentation" identifier="presentMapView" id="GuO-kC-rCZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abb-e7-c74" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -335,7 +336,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ZSO-Jo-EUR">
             <objects>
-                <tabBarController storyboardIdentifier="mapNavController" automaticallyAdjustsScrollViewInsets="NO" id="Zyj-NO-I4j" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Zyj-NO-I4j" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QUX-gw-cot">
                         <autoresizingMask key="autoresizingMask"/>

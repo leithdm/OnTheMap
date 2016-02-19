@@ -10,7 +10,10 @@ import Foundation
 
 class UdacityClient: NSObject {
 	
-	//MARK:- global variables for a session
+	//MARK:- properties
+	
+	//singleton instance of UdacityClient
+	static let sharedInstance = UdacityClient()
 	
 	//NSURLSession variable
 	let session: NSURLSession
@@ -20,8 +23,7 @@ class UdacityClient: NSObject {
 		session = NSURLSession.sharedSession()
 		super.init()
 	}
-	
-	static let sharedInstance = UdacityClient()
+
 	
 	func login(username: String, password: String, completionHandlerForLogin: (result: [String: AnyObject]?, error: String?) -> Void) {
 		
@@ -41,17 +43,17 @@ class UdacityClient: NSObject {
 			
 			/* GUARD: Was there an error? */
 			guard (error == nil) else {
-				sendError("There was an error with your request: \(error)")
+				sendError("There was an error with your request. Please check your internet connection.")
 				return
 			}
 			
 			/* GUARD: Was there any data returned? */
 			guard let data = data else {
-				sendError("No data was returned by the request!")
+				sendError("No data was returned from the server. Please contact Udacity.")
 				return
 			}
 			
-			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
 			
 			self.parseLoginRequest(data: newData, completionHandlerForLogin: completionHandlerForLogin)
 		}
@@ -66,7 +68,7 @@ class UdacityClient: NSObject {
 			let parsedData = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
 			
 			guard let data = parsedData else {
-				completionHandlerForLogin(result: nil, error: "Error connecting to network")
+				completionHandlerForLogin(result: nil, error: "Error parsing data from the network.")
 				return
 			}
 			

@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
 	
 	
 	//MARK: - properties
+	
 	var activityIndicator = UIActivityIndicatorView()
 	
 	//MARK: - lifecycle methods
@@ -27,12 +28,6 @@ class LoginViewController: UIViewController {
 		setUpActivityIndicator()
 		emailTextField.delegate = self
 		passwordTextField.delegate = self
-		
-	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
 	
@@ -42,31 +37,25 @@ class LoginViewController: UIViewController {
 		
 		activityIndicator.startAnimating()
 		
-		//validate against blank email and password fields
-		guard (emailTextField.text != "") && (passwordTextField.text != "") else {
-			showAlertViewController("Oops..!", message: "Please enter your email and password")
+		//guard against blank username and passwords
+		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
+			showAlertViewController("Login error", message: "Please enter both your email and password")
 			return
 		}
 		
-		if let email = emailTextField.text, password = passwordTextField.text {
-			//call the login method
-			UdacityClient.sharedInstance.login(email, password: password, completionHandlerForLogin: { (result, error) -> Void in
-				
-				guard result != nil else {
-					self.showAlertViewController("Login error", message: error!)
-					return
-				}
-				self.segueToMapView()
+		UdacityClient.sharedInstance.login(email, password: password, completionHandlerForLogin: { (result, error) -> Void in
+			
+			guard error == nil && result != nil else {
+				self.showAlertViewController("Login error", message: error!)
+				return
+			}
+			
+			self.performUIUpdatesOnMain({ () -> Void in
+				self.activityIndicator.stopAnimating()
+				self.performSegueWithIdentifier("presentMapView", sender: self)
 			})
-		} else {
-			showAlertViewController("Invalid login", message: "Please enter a valid username and password")
-		}
-	}
-	
-	//MARK: - segue to the mapView nav controller
-	func segueToMapView() {
-		let mapNavController = self.storyboard!.instantiateViewControllerWithIdentifier("mapNavController") as! UITabBarController
-		presentViewController(mapNavController, animated: true, completion: nil)
+
+		})
 	}
 	
 	//MARK: - helper methods
@@ -85,7 +74,7 @@ class LoginViewController: UIViewController {
 	
 	//initialize the activity indicator
 	func setUpActivityIndicator() {
-		activityIndicator.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+		activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
 		view.addSubview(activityIndicator)
 		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
 		activityIndicator.hidesWhenStopped = true

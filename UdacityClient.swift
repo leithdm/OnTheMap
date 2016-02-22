@@ -23,12 +23,12 @@ class UdacityClient: NSObject {
 		session = NSURLSession.sharedSession()
 		super.init()
 	}
-
+	
 	
 	//MARK: - login
 	func login(username: String, password: String, completionHandlerForLogin: (result: [String: AnyObject]?, error: String?) -> Void) {
 		let request = NSMutableURLRequest(URL: NSURL(string: UdacityClient.Methods.LoginURL)!)
-	
+		
 		request.HTTPMethod = "POST"
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -53,6 +53,7 @@ class UdacityClient: NSObject {
 				return
 			}
 			
+			//ignore the first 5 items of data
 			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
 			
 			self.parseLoginRequest(data: newData, completionHandlerForLogin: completionHandlerForLogin)
@@ -61,6 +62,37 @@ class UdacityClient: NSObject {
 	}
 	
 	
+	//MARK: - get public user data
+	
+	func getPublicUserData(key: String, completionHandler: (result: [String: AnyObject]?, error: String?) -> Void) {
+		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/" + key)!)
+		let session = NSURLSession.sharedSession()
+		
+		let task = session.dataTaskWithRequest(request) { data, response, error in
+			
+			func sendError(error: String) {
+				print(error)
+				completionHandler(result: nil, error: error)
+			}
+			/* GUARD: Was there an error? */
+			guard (error == nil) else {
+				sendError("There was an error with your request. Please check your internet connection.")
+				return
+			}
+			/* GUARD: Was there any data returned? */
+			guard let data = data else {
+				sendError("No data was returned from the server. Please contact Udacity.")
+				return
+			}
+			
+			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+			print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+			
+			//TODO: parse the data
+			
+		}
+		task.resume()
+	}
 	
  // MARK: - Helper Methods
 	
@@ -73,18 +105,15 @@ class UdacityClient: NSObject {
 				completionHandlerForLogin(result: nil, error: "Error parsing data from the network.")
 				return
 			}
-			
 			guard let account = data["account"] else {
 				completionHandlerForLogin(result: nil, error: "Invalid username/password combination")
 				return
 			}
-			
 			guard let registered = account["registered"] as? Bool where registered == true, let key = account["key"] as? String else {
 				completionHandlerForLogin(result: nil, error: "User not registered")
 				return
 			}
-			
-			let accountDetails: [String: AnyObject] = ["key": key, "registered": registered]
+			let accountDetails: [String: AnyObject] = ["uniqueKey": key, "registered": registered]
 			completionHandlerForLogin(result: accountDetails, error: nil)
 			
 		} catch {

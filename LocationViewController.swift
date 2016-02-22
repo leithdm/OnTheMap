@@ -19,7 +19,6 @@ class LocationViewController: UIViewController {
 		static let keyboardWillHide = "UIKeyboardWillHideNotification"
 	}
 	
-	
 	//MARK: - outlets
 	
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -53,11 +52,11 @@ class LocationViewController: UIViewController {
 	
 	//MARK: - submitted a location
 	
-	@IBAction func didPressCancel(sender: AnyObject) {
-		self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+	@IBAction func didCancel(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	@IBAction func didPressEnter(sender: AnyObject) {
+	@IBAction func didSubmitLocation(sender: AnyObject) {
 		if locationTextField.text!.isEmpty{
 			showAlert("Error", message: "Enter a location")
 			return
@@ -92,10 +91,10 @@ class LocationViewController: UIViewController {
 						self.showAlert("Error", message:"Please choose a more specific location")
 					}
 				} else {
-					self.showAlert("Error", message:"Unable to find that location")
+					self.showAlert("Error", message:"Unable to find location")
 				}
 			} else {
-				self.showAlert("Error", message: "Unable to find that location")
+				self.showAlert("Error", message: "Unable to find location")
 			}
 		}
 	}

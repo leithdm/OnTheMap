@@ -105,7 +105,7 @@
                                                 <rect key="frame" x="544" y="18" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
-                                                    <action selector="didPressCancel:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="DEk-sn-z0V"/>
+                                                    <action selector="didCancel:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="SYb-f9-agE"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -157,7 +157,7 @@
                                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="didPressEnter:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="Mfy-4I-FGI"/>
+                                                    <action selector="didSubmitLocation:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="lQ8-VA-Two"/>
                                                     <segue destination="bB3-w4-ome" kind="show" identifier="presentLinkViewController" id="lD9-Ze-Vde"/>
                                                 </connections>
                                             </button>

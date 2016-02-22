@@ -27,7 +27,6 @@ class LinkViewController: UIViewController {
 		currentStudent = ParseClient.sharedInstance.currentStudent
 		activityIndicator.hidesWhenStopped = true
 		addAnnotationsToMap()
-		
 		print(currentStudent)
 	}
 	
@@ -36,7 +35,7 @@ class LinkViewController: UIViewController {
 	func addAnnotationsToMap() {
 		print("here")
 		dispatch_async(dispatch_get_main_queue()){
-			if let student = self.currentStudent, lon = student.longitude, lat = student.latitude{
+			if let student = self.currentStudent, lon = student.longitude, lat = student.latitude {
 				let lat = CLLocationDegrees(Double((lat)))
 				let long = CLLocationDegrees(Double((lon)))
 				let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -46,7 +45,8 @@ class LinkViewController: UIViewController {
 				let cammera = MKMapCamera(lookingAtCenterCoordinate: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 10000.0)
 				self.mapView.setCamera(cammera, animated: true)
 			} else {
-				self.showAlert("Error", message: "Unable to parse student data")
+				//cant get a reference to the student
+				self.showAlert("Error", message: "Internal error: unable to parse student data")
 			}
 		}
 	}

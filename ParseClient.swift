@@ -10,29 +10,22 @@ import Foundation
 
 class ParseClient: NSObject {
 	
-	//MARK:- global variables for a session
+	//MARK:- properties
 	
 	//shared singleton instance of the Parse Client
 	static let sharedInstance = ParseClient()
-	
 	//current user logged in
 	var currentStudent: Student?
-	
 	//student mediaURL
 	var mediaURL: String?
-	
 	//student already posted to the map?
 	var studentAlreadyPosted: Bool? = false
-	
 	//array of students
 	var students : [Student]?
-	
 	//is the student already on the map
 	var onTheMap : Bool?
-	
 	//NSURLSession variable
 	let session: NSURLSession
-	
 	
 	//MARK: - lifecycle method
 	override init() {
@@ -123,7 +116,7 @@ class ParseClient: NSObject {
 					return
 				}
 				if let data = data {
-					self.parsePostStudentRequest(data: data, completionHandler: completionHandler)
+					self.parsePostStudentLocation(data: data, completionHandler: completionHandler)
 				} else {
 					completionHandler(completed: false, errorString: "Unable to post student data")
 				}
@@ -132,7 +125,7 @@ class ParseClient: NSObject {
 	}
 	
 	
-	func parsePostStudentRequest(data data: NSData, completionHandler:(completed: Bool?,errorString: String?) -> Void) {
+	func parsePostStudentLocation(data data: NSData, completionHandler:(completed: Bool?,errorString: String?) -> Void) {
 		do{
 			if let parsedData =
 				try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject]{

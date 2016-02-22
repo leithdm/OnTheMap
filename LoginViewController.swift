@@ -50,11 +50,9 @@ class LoginViewController: UIViewController {
 				self.showAlertViewController("Login error", message: error!)
 				return
 			}
-			
 			//assign the current student value
-			print(result) 
 			ParseClient.sharedInstance.currentStudent = Student(dictionary: result)
-			print(ParseClient.sharedInstance.currentStudent)
+			self.getPublicUserData()
 			
 			self.performUIUpdatesOnMain({ () -> Void in
 				self.activityIndicator.stopAnimating()
@@ -62,6 +60,23 @@ class LoginViewController: UIViewController {
 			})
 			
 		})
+	}
+	
+	func getPublicUserData() {
+		if let key = ParseClient.sharedInstance.currentStudent?.uniqueKey {
+			UdacityClient.sharedInstance.getPublicUserData(key, completionHandler: { (result, error) -> Void in
+
+				/* GUARD: Was there any data returned? */
+				guard let data = result else {
+//					sendError("No data was returned from the server. Please contact Udacity.")
+					return
+				}
+				
+				ParseClient.sharedInstance.currentStudent?.firstName = data["firstname"] as? String
+				ParseClient.sharedInstance.currentStudent?.lastName = data["lastname"] as? String
+				print(ParseClient.sharedInstance.currentStudent?.firstName)
+			})
+		}
 	}
 	
 	//MARK: - sign up

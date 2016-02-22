@@ -25,7 +25,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	var students: [Student]?
 	var sharedSession: ParseClient?
-//	var activityIndicator = UIActivityIndicatorView()
 	
 	//MARK: - lifecycle methods
 	

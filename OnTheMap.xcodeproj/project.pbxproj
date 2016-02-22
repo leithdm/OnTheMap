@@ -23,7 +23,6 @@
 		01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F541C73774300E21F73 /* UdacityClient.swift */; };
 		01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F561C73774D00E21F73 /* ParseClient.swift */; };
 		01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */; };
-		01B78F631C73784900E21F73 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F621C73784900E21F73 /* AuthController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +65,6 @@
 		01B78F541C73774300E21F73 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		01B78F561C73774D00E21F73 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
-		01B78F621C73784900E21F73 /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +203,6 @@
 		01B78F5B1C7377BB00E21F73 /* UdacityClient */ = {
 			isa = PBXGroup;
 			children = (
-				01B78F621C73784900E21F73 /* AuthController.swift */,
 				01B78F541C73774300E21F73 /* UdacityClient.swift */,
 				01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */,
 			);
@@ -348,7 +345,6 @@
 				01B78F441C734D5900E21F73 /* ListTableViewController.swift in Sources */,
 				01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */,
 				01B78F491C7358DC00E21F73 /* LinkViewController.swift in Sources */,
-				01B78F631C73784900E21F73 /* AuthController.swift in Sources */,
 				01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */,
 				01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */,
 				01B78F501C735A7B00E21F73 /* Student.swift in Sources */,

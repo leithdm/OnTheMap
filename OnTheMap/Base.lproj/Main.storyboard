@@ -104,6 +104,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoF-oc-KII">
                                                 <rect key="frame" x="544" y="18" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="didPressCancel:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="DEk-sn-z0V"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,11 +129,11 @@
                                                     <constraint firstAttribute="height" constant="50" id="ckU-zi-cJI"/>
                                                 </constraints>
                                             </activityIndicatorView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
                                                 <rect key="frame" x="8" y="8" width="584" height="184"/>
                                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="32"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,7 +157,8 @@
                                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="bB3-w4-ome" kind="show" id="lD9-Ze-Vde"/>
+                                                    <action selector="didPressEnter:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="Mfy-4I-FGI"/>
+                                                    <segue destination="bB3-w4-ome" kind="show" identifier="presentLinkViewController" id="lD9-Ze-Vde"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -174,6 +178,10 @@
                             <constraint firstAttribute="trailing" secondItem="3Kt-JE-PtV" secondAttribute="trailing" id="iLd-cQ-Kl2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vnw-8I-8Cz" id="4rl-sp-SL2"/>
+                        <outlet property="locationTextField" destination="RkF-5v-wHr" id="omJ-fP-ZTs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbK-Vz-53c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,6 +210,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ff4-P1-alf">
                                         <rect key="frame" x="544" y="18" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="bB3-w4-ome" eventType="touchUpInside" id="lAg-R7-iPC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -233,6 +244,9 @@
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="submitButtonPressed:" destination="bB3-w4-ome" eventType="touchUpInside" id="ndD-6L-dep"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -260,6 +274,11 @@
                             <constraint firstItem="Oub-9o-bnz" firstAttribute="top" secondItem="qQy-Re-Rwt" secondAttribute="bottom" constant="-99" id="tip-Iu-Zyu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="dCX-22-hfZ" id="dyG-qr-f9r"/>
+                        <outlet property="linkTextField" destination="Xl5-va-gpc" id="u6n-7H-mns"/>
+                        <outlet property="mapView" destination="qQy-Re-Rwt" id="cKM-z4-BaK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tpn-6D-m11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
 	
 	@IBAction func login(sender: UIButton) {
 		
+
 		//guard against blank username and passwords
 		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
 			showAlertViewController("Login Error", message: "Please enter both your email and password")
@@ -49,6 +50,11 @@ class LoginViewController: UIViewController {
 				self.showAlertViewController("Login error", message: error!)
 				return
 			}
+			
+			//assign the current student value
+			print(result) 
+			ParseClient.sharedInstance.currentStudent = Student(dictionary: result)
+			print(ParseClient.sharedInstance.currentStudent)
 			
 			self.performUIUpdatesOnMain({ () -> Void in
 				self.activityIndicator.stopAnimating()
@@ -110,9 +116,16 @@ class LoginViewController: UIViewController {
 //MARK: - Text Field Delegate
 extension LoginViewController: UITextFieldDelegate {
 	
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		if passwordTextField.isFirstResponder() { passwordTextField.resignFirstResponder()}
+		if emailTextField.isFirstResponder() { emailTextField.resignFirstResponder()}
+	}
+	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		return true
+		if textField.isFirstResponder() && textField.text!.isEmpty == false{
+			textField.resignFirstResponder()
+		}
+		return false
 	}
 	
 }

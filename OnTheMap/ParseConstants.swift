@@ -31,7 +31,7 @@ extension ParseClient {
 	
 	//MARK:- HTTP Header Fields
 	struct HTTPParameters {
-		static let ParseAPIKeyHeader = "X-Parse-Application-Id"
-		static let ParseAppIDHeader = "X-Parse-REST-API-Key"
+		static let ParseAppIDHeader = "X-Parse-Application-Id"
+		static let ParseAPIKeyHeader = "X-Parse-REST-API-Key"
 	}
 }

@@ -122,6 +122,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFs-cF-No9">
                                         <rect key="frame" x="0.0" y="200" width="600" height="200"/>
                                         <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location" textAlignment="center" minimumFontSize="16" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
+                                                <rect key="frame" x="8" y="8" width="584" height="184"/>
+                                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vnw-8I-8Cz">
                                                 <rect key="frame" x="275" y="75" width="50" height="50"/>
                                                 <constraints>
@@ -129,12 +135,6 @@
                                                     <constraint firstAttribute="height" constant="50" id="ckU-zi-cJI"/>
                                                 </constraints>
                                             </activityIndicatorView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here" textAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
-                                                <rect key="frame" x="8" y="8" width="584" height="184"/>
-                                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="32"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -158,7 +158,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="didSubmitLocation:" destination="jqv-Oq-Asj" eventType="touchUpInside" id="lQ8-VA-Two"/>
-                                                    <segue destination="bB3-w4-ome" kind="show" identifier="presentLinkViewController" id="lD9-Ze-Vde"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -181,6 +180,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="vnw-8I-8Cz" id="4rl-sp-SL2"/>
                         <outlet property="locationTextField" destination="RkF-5v-wHr" id="omJ-fP-ZTs"/>
+                        <segue destination="bB3-w4-ome" kind="presentation" identifier="presentLinkViewController" id="amu-VA-yBm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbK-Vz-53c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -623,6 +623,6 @@
         <image name="table" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AcD-3n-Qje"/>
+        <segue reference="sFS-jb-EJG"/>
     </inferredMetricsTieBreakers>
 </document>

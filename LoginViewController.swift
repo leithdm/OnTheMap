@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
 	//MARK: - properties
 	
 	var activityIndicator = UIActivityIndicatorView()
+	let udacityClient = UdacityClient()
+	let parseClient = ParseClient.sharedInstance
 	
 	//MARK: - lifecycle methods
 	override func viewDidLoad() {
@@ -34,8 +36,6 @@ class LoginViewController: UIViewController {
 	//MARK: - login
 	
 	@IBAction func login(sender: UIButton) {
-		
-
 		//guard against blank username and passwords
 		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
 			showAlertViewController("Login Error", message: "Please enter both your email and password")
@@ -44,14 +44,13 @@ class LoginViewController: UIViewController {
 		
 		activityIndicator.startAnimating()
 		
-		UdacityClient.sharedInstance.login(email, password: password, completionHandlerForLogin: { (result, error) -> Void in
-			
+		udacityClient.login(email, password: password, completionHandlerForLogin: { (result, error) -> Void in
 			guard error == nil && result != nil else {
 				self.showAlertViewController("Login error", message: error!)
 				return
 			}
 			//assign the current student value
-			ParseClient.sharedInstance.currentStudent = Student(dictionary: result)
+			self.parseClient.currentStudent = Student(dictionary: result)
 			self.getPublicUserData()
 			
 			self.performUIUpdatesOnMain({ () -> Void in
@@ -64,17 +63,16 @@ class LoginViewController: UIViewController {
 	
 	func getPublicUserData() {
 		if let key = ParseClient.sharedInstance.currentStudent?.uniqueKey {
-			UdacityClient.sharedInstance.getPublicUserData(key, completionHandler: { (result, error) -> Void in
-
+			udacityClient.getPublicUserData(key, completionHandler: { (result, error) -> Void in
+				
 				/* GUARD: Was there any data returned? */
-				guard let data = result else {
-//					sendError("No data was returned from the server. Please contact Udacity.")
+				guard let result = result else {
+					print("no data was received")
 					return
 				}
 				
-				ParseClient.sharedInstance.currentStudent?.firstName = data["firstname"] as? String
-				ParseClient.sharedInstance.currentStudent?.lastName = data["lastname"] as? String
-				print(ParseClient.sharedInstance.currentStudent?.firstName)
+				self.parseClient.currentStudent!.firstName = result["firstName"] as? String
+				self.parseClient.currentStudent!.lastName = result["lastName"] as? String
 			})
 		}
 	}

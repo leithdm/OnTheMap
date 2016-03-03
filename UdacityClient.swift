@@ -12,9 +12,6 @@ class UdacityClient: NSObject {
 	
 	//MARK:- properties
 	
-	//singleton instance of UdacityClient
-	static let sharedInstance = UdacityClient()
-	
 	//NSURLSession variable
 	let session: NSURLSession
 	
@@ -65,7 +62,7 @@ class UdacityClient: NSObject {
 	//MARK: - get public user data
 	
 	func getPublicUserData(key: String, completionHandler: (result: [String: AnyObject]?, error: String?) -> Void) {
-		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/" + key)!)
+		let request = NSMutableURLRequest(URL: NSURL(string: UdacityClient.Methods.getPublicUserData + key)!)
 		let session = NSURLSession.sharedSession()
 		
 		let task = session.dataTaskWithRequest(request) { data, response, error in
@@ -85,11 +82,9 @@ class UdacityClient: NSObject {
 				return
 			}
 			
+			//ignore the first 5 items of data
 			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-			print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-			
-			//TODO: parse the data
-			
+			self.parseGetPublicUserData(data: newData, completionHandler: completionHandler)
 		}
 		task.resume()
 	}
@@ -118,6 +113,30 @@ class UdacityClient: NSObject {
 			
 		} catch {
 			completionHandlerForLogin(result: nil, error: "Error logging in")
+		}
+	}
+	
+	//parse public user data
+	func parseGetPublicUserData(data data: NSData, completionHandler: (result: [String: AnyObject]?, error: String?) -> Void) {
+		do {
+			let parsedData = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
+			
+			guard let data = parsedData as? [String: AnyObject] else {
+				completionHandler(result: nil, error: "Error parsing data from the network.")
+				return
+			}
+			
+			guard let user = data["user"] as? [String: AnyObject] else {
+				completionHandler(result: nil, error: "User not found")
+				return
+			}
+			
+			if let firstName = user["first_name"] as? String, lastName = user["last_name"] as? String {
+				let tempDict: [String: AnyObject] = ["firstName": firstName, "lastName": lastName]
+				completionHandler(result: tempDict, error: nil)
+			}
+		} catch {
+			completionHandler(result: nil, error: "Error logging in")
 		}
 	}
 }

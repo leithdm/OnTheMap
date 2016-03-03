@@ -10,14 +10,9 @@ import UIKit
 
 class ListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
-	@IBOutlet weak var tableView: UITableView!
-	
 	//MARK: - outlets
 	
-	@IBAction func reloadData(sender: UIBarButtonItem) {
-		getStudentsFromServer()
-	}
-	
+	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var viewForActivityIndicator: UIView!
 	
@@ -30,7 +25,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		sharedSession = ParseClient.sharedInstance
 		students = sharedSession?.students
 		setUpActivityIndicator()
@@ -80,6 +74,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 				}
 			}
 		}
+	}
+	
+	//MARK: - reload data using button
+	
+	@IBAction func reloadData(sender: UIBarButtonItem) {
+		getStudentsFromServer()
 	}
 	
 	//MARK: - reload student data from server

@@ -10,16 +10,11 @@
 
 extension UdacityClient {
 	
-	// MARK:- Key Constants
-	struct Keys {
-//		static let ParseAppId : String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-//		static let ParseAPIKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-	}
-	
 	// MARK:- Methods
 	struct Methods {
 		static let LoginURL = "https://www.udacity.com/api/session"
 		static let signUpURL = "https://www.udacity.com/account/auth#!/signin"
+		static let getPublicUserData = "https://www.udacity.com/api/users/"
 	}
 	
 	//MARK:- Parameters

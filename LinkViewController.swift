@@ -12,28 +12,30 @@ import MapKit
 class LinkViewController: UIViewController {
 	
 	//MARK: - outlets
+	
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var linkTextField: UITextField!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	
 	//MARK: - properties
+	
 	var currentStudent: Student?
 	var ParseSharedInstance = ParseClient.sharedInstance
 	
 	//MARK: - lifecycle methods
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		linkTextField.delegate = self
 		currentStudent = ParseClient.sharedInstance.currentStudent
 		activityIndicator.hidesWhenStopped = true
 		addAnnotationsToMap()
-		print(currentStudent)
 	}
 	
 	
 	//MARK: - add annotations to the map
+	
 	func addAnnotationsToMap() {
-		print("here")
 		dispatch_async(dispatch_get_main_queue()){
 			if let student = self.currentStudent, lon = student.longitude, lat = student.latitude {
 				let lat = CLLocationDegrees(Double((lat)))
@@ -42,8 +44,8 @@ class LinkViewController: UIViewController {
 				let annotation = MKPointAnnotation()
 				annotation.coordinate = coordinate
 				self.mapView.addAnnotation(annotation)
-				let cammera = MKMapCamera(lookingAtCenterCoordinate: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 10000.0)
-				self.mapView.setCamera(cammera, animated: true)
+				let camera = MKMapCamera(lookingAtCenterCoordinate: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 10000.0)
+				self.mapView.setCamera(camera, animated: true)
 			} else {
 				//cant get a reference to the student
 				self.showAlert("Error", message: "Internal error: unable to parse student data")
@@ -111,7 +113,7 @@ class LinkViewController: UIViewController {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	//MARK: - Helper Methods
+	//MARK: - helper methods
 	
 	//verify that the URL is of the correct syntax
 	func verifyUrl(urlString: String?) ->Bool {

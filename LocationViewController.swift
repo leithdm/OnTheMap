@@ -11,7 +11,6 @@ import MapKit
 
 class LocationViewController: UIViewController {
 	
-	
 	//MARK: notifications enum
 	
 	enum Notifications {
@@ -37,7 +36,6 @@ class LocationViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-
 		//subscribe to keyboard notifications
 		subscribeToKeyboardWillShowNotification()
 		subscribeToKeyboardWillHideNotification()
@@ -45,42 +43,47 @@ class LocationViewController: UIViewController {
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		
+		//unsubscribe to keyboard notifications
 		unsubscribeFromKeyboardWillShowNotification()
 		unsubscribeFromKeyboardWillHideNotification()
 	}
 	
-	//MARK: - submitted a location
+	//MARK: - cancelled
 	
 	@IBAction func didCancel(sender: AnyObject) {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
+	//MARK: - submitted a location
+	
 	@IBAction func didSubmitLocation(sender: AnyObject) {
-		if locationTextField.text!.isEmpty{
-			showAlert("Error", message: "Enter a location")
+		
+		//error validation: textfield is empty
+		if locationTextField.text!.isEmpty {
+			showAlert("Whoops!", message: "Please enter a location")
 			return
 		}
 		
 		let geocoder = CLGeocoder()
-		geocoder.geocodeAddressString(locationTextField.text!){
+		geocoder.geocodeAddressString(locationTextField.text!) {
 			placemark, error in
-			if let error = error {
-				self.showAlert("Error", message: error.localizedDescription)
+			if let _ = error {
+				self.showAlert("Error", message: "Could not find that location")
 				return
 			}
+			
 			self.activityIndicator.startAnimating()
 			if let placemark = placemark{
 				if placemark.count > 0 {
 					let placemark = placemark.first!
 					if let country = placemark.country, state = placemark.administrativeArea {
-						if let city = placemark.locality{
+						if let city = placemark.locality {
 							self.ParseSharedInstance.currentStudent?.mapString = "\(city), \(state), \(country)"
 							self.ParseSharedInstance.currentStudent?.latitude = Float(placemark.location!.coordinate.latitude)
 							self.ParseSharedInstance.currentStudent?.longitude = Float(placemark.location!.coordinate.longitude)
 							self.presentViewWith(self.ParseSharedInstance.currentStudent?.mapString,lat: self.ParseSharedInstance.currentStudent?.latitude,lon: self.ParseSharedInstance.currentStudent?.longitude)
 							self.stopActivityIndicator()
-						}else {
+						} else {
 							self.ParseSharedInstance.currentStudent?.mapString = "\(state), \(country)"
 							self.ParseSharedInstance.currentStudent?.latitude = Float(placemark.location!.coordinate.latitude)
 							self.ParseSharedInstance.currentStudent?.longitude = Float(placemark.location!.coordinate.longitude)
@@ -88,13 +91,13 @@ class LocationViewController: UIViewController {
 							self.stopActivityIndicator()
 						}
 					} else {
-						self.showAlert("Error", message:"Please choose a more specific location")
+						self.showAlert("Whoops!", message:"Please choose a more specific location")
 					}
 				} else {
-					self.showAlert("Error", message:"Unable to find location")
+					self.showAlert("Whoops!", message:"Unable to find location")
 				}
 			} else {
-				self.showAlert("Error", message: "Unable to find location")
+				self.showAlert("Whoops!", message: "Unable to find location")
 			}
 		}
 	}
@@ -102,30 +105,27 @@ class LocationViewController: UIViewController {
 	//MARK: - Helper Methods
 	
 	func stopActivityIndicator() {
-		dispatch_async(dispatch_get_main_queue()){
+		performUIUpdatesOnMain { () -> Void in
 			self.activityIndicator.stopAnimating()
 		}
 	}
 	
-	//Shows alert and stops activity indicator
+
+	//Shows an alert
 	func showAlert(title: String? , message: String?) {
-		dispatch_async(dispatch_get_main_queue()){
-			if title != nil && message != nil {
-				let errorAlert =
-				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-				errorAlert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
-				self.presentViewController(errorAlert, animated: true, completion: nil)
-			}
+		performUIUpdatesOnMain { () -> Void in
+			let errorAlert =
+			UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+			errorAlert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+			self.presentViewController(errorAlert, animated: true, completion: nil)
 		}
 	}
 	
-	//present Link View Controller
+	//present LinkViewController
 	func presentViewWith(mapString: String?, lat: Float?, lon: Float? ) {
-		dispatch_async(dispatch_get_main_queue()){
+		performUIUpdatesOnMain { () -> Void in
 			if mapString != nil {
 				self.performSegueWithIdentifier("presentLinkViewController", sender: self)
-			} else {
-				self.showAlert("ERROR", message: "Unable to find location: please try again")
 			}
 		}
 	}
@@ -152,6 +152,13 @@ class LocationViewController: UIViewController {
 		let userInfo = notification.userInfo
 		let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue //of CGRect
 		return (keyboardSize.CGRectValue().height / 2)
+	}
+	
+	//run on main thread
+	func performUIUpdatesOnMain(updates: () -> Void) {
+		dispatch_async(dispatch_get_main_queue()) {
+			updates()
+		}
 	}
 	
 	//subscribe/unsubscribe to keyboard notifications

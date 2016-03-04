@@ -30,8 +30,8 @@ class LocationViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		locationTextField.delegate = self
+		setUpActivityIndicator()
 		activityIndicator.hidesWhenStopped = true
-		
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -64,15 +64,16 @@ class LocationViewController: UIViewController {
 			return
 		}
 		
+		self.activityIndicator.startAnimating()
+		
 		let geocoder = CLGeocoder()
 		geocoder.geocodeAddressString(locationTextField.text!) {
 			placemark, error in
 			if let _ = error {
-				self.showAlert("Error", message: "Could not find that location")
+				self.showAlert("Whoops!", message: "Unable to find that address")
 				return
 			}
 			
-			self.activityIndicator.startAnimating()
 			if let placemark = placemark{
 				if placemark.count > 0 {
 					let placemark = placemark.first!
@@ -102,6 +103,7 @@ class LocationViewController: UIViewController {
 		}
 	}
 	
+
 	//MARK: - Helper Methods
 	
 	func stopActivityIndicator() {
@@ -160,6 +162,13 @@ class LocationViewController: UIViewController {
 		dispatch_async(dispatch_get_main_queue()) {
 			updates()
 		}
+	}
+	
+	//initialize the activity indicator
+	func setUpActivityIndicator() {
+		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
+		activityIndicator.hidesWhenStopped = true
+		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
 	}
 	
 	//subscribe/unsubscribe to keyboard notifications

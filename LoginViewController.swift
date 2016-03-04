@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
 				return
 			}
 			//assign the current student value
-			self.parseClient.currentStudent = Student(dictionary: result)
+			self.parseClient.currentStudent = StudentInformation(dictionary: result)
 			self.getPublicUserData()
 			
 			self.performUIUpdatesOnMain({ () -> Void in

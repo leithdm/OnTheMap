@@ -18,7 +18,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	//MARK: - properties
 	
-	var students: [Student]?
+	var arrayStudents: [StudentInformation]?
 	var sharedSession: ParseClient?
 	
 	//MARK: - lifecycle methods
@@ -26,10 +26,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		sharedSession = ParseClient.sharedInstance
-		students = sharedSession?.students
+		arrayStudents = sharedSession?.students
 		setUpActivityIndicator()
 		
 	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(true)
+		tableView.reloadData()
+	}
+	
 	
 	// MARK: - Table view data source
 	
@@ -38,7 +44,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let count = students?.count {
+		if let count = arrayStudents?.count {
 			return count
 		} else {
 			return 0
@@ -48,7 +54,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	//cell for row at index path
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-		if let students = students {
+		if let students = arrayStudents {
 			let student = students[indexPath.row]
 			if let firstName = student.firstName, lastName = student.lastName, mapString = student.mapString, mediaURL = student.mediaURL {
 				cell.textLabel!.text = "\(firstName) \(lastName)"
@@ -62,7 +68,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	//did select row
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let students = students {
+		if let students = arrayStudents {
 			if let URL = students[indexPath.row].mediaURL {
 				let app = UIApplication.sharedApplication()
 				if let url = NSURL(string: URL) {
@@ -85,6 +91,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	//MARK: - reload student data from server
 	
 	func getStudentsFromServer() {
+		
 		setActivityViewHidden(false)
 		activityIndicator.startAnimating()
 		
@@ -98,12 +105,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 				}
 				
 				if let students = result as? [[String: AnyObject]] {
-					var studentArray = [Student]()
+					self.arrayStudents?.removeAll(keepCapacity: true)
 					for studentData in students {
-						studentArray.append(Student(dictionary: studentData))
+						self.arrayStudents?.append(StudentInformation(dictionary: studentData))
 					}
 					
-					if studentArray.count > 0 {
+					if self.arrayStudents?.count > 0 {
 						self.performUIUpdatesOnMain({ () -> Void in
 							self.activityIndicator.stopAnimating()
 							self.setActivityViewHidden(true)
@@ -113,6 +120,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 				}
 			}
 		}
+	}
+	
+	//MARK: - logout
+	
+	@IBAction func logout(sender: AnyObject) {
+		let logoutController = presentingViewController as? LoginViewController
+		logoutController?.passwordTextField.text = ""
+		ParseClient.sharedInstance.students = nil
+		ParseClient.sharedInstance.currentStudent = nil
+		self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil )
 	}
 	
 	//MARK: - helper methods

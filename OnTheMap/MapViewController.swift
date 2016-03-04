@@ -19,16 +19,16 @@ class MapViewController: UIViewController {
 	//MARK: - properties
 	var annotations = [MKPointAnnotation]()
 	var activityIndicator = UIActivityIndicatorView()
+	var uniqueKey: String?
 	
 	
 	//MARK: - lifecycle methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		mapView.delegate = self
-		
 		setUpActivityIndicator()
 		getStudentsFromServer()
+		uniqueKey = ParseClient.sharedInstance.currentStudent?.uniqueKey
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -39,15 +39,12 @@ class MapViewController: UIViewController {
 	
 	func getStudentsFromServer() {
 		activityIndicator.startAnimating()
-		
 		ParseClient.sharedInstance.getStudentLocations { (result, error) -> Void in
-			
 			if let students = result as? [[String: AnyObject]] {
-				var studentArray = [Student]()
+				var studentArray = [StudentInformation]()
 				for studentData in students {
-					studentArray.append(Student(dictionary: studentData))
+					studentArray.append(StudentInformation(dictionary: studentData))
 				}
-				
 				if studentArray.count > 0 {
 					dispatch_async(dispatch_get_main_queue()) {
 						ParseClient.sharedInstance.students = studentArray
@@ -80,7 +77,6 @@ class MapViewController: UIViewController {
 		
 		performUIUpdatesOnMain {
 			if let students = ParseClient.sharedInstance.students {
-				
 				var annotations = [MKAnnotation]()
 				for student in students {
 					if let lon = student.longitude,
@@ -109,6 +105,47 @@ class MapViewController: UIViewController {
 		}
 	}
 	
+	//MARK: - delete the current pin location for logged-in student
+
+	@IBAction func deleteAssignedPin(sender: AnyObject) {
+		activityIndicator.startAnimating()
+		let parseClient = ParseClient.sharedInstance
+		parseClient.queryForStudent(uniqueKey!){
+			(student, errorString) in
+			if let student = student {
+				if let objectId = student.objectId{
+					parseClient.currentStudent!.objectId = objectId
+					parseClient.deleteStudent(objectId){ completed, errorString in
+						if completed == false {
+							if let _ = errorString {
+								self.showAlertViewController("Whoops!", message: "Could not delete the pin")
+							} else {
+								self.showAlertViewController("Whoops!", message: "Error while deleting")
+							}
+						} else {
+							self.stopActivityIndicator()
+							self.getStudentsFromServer()
+						}
+					}
+				} else {
+					self.showAlertViewController("Whoops!", message: "Error while retrieving your details")
+				}
+			} else {
+				self.showAlertViewController("Oops!", message: "A pin has not been posted yet")
+			}
+		}
+	}
+	
+	//MARK: - logout
+	
+	@IBAction func logout(sender: AnyObject) {
+		let logoutController = presentingViewController as? LoginViewController
+		logoutController?.passwordTextField.text = ""
+		ParseClient.sharedInstance.students = nil
+		ParseClient.sharedInstance.currentStudent = nil
+		self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil )
+	}
+
 	//reload the page
 	@IBAction func reloadPage(sender: UIBarButtonItem) {
 		getStudentsFromServer()

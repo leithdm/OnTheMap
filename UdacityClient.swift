@@ -20,7 +20,7 @@ class UdacityClient: NSObject {
 		session = NSURLSession.sharedSession()
 		super.init()
 	}
-	
+		
 	
 	//MARK: - login
 	func login(username: String, password: String, completionHandlerForLogin: (result: [String: AnyObject]?, error: String?) -> Void) {

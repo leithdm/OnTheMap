@@ -15,11 +15,11 @@ class ParseClient: NSObject {
 	//shared singleton instance of the Parse Client
 	static let sharedInstance = ParseClient()
 	//current user logged in
-	var currentStudent: Student?
+	var currentStudent: StudentInformation?
 	//student already posted to the map?
 	var studentAlreadyPosted: Bool? = false
 	//array of students
-	var students : [Student]?
+	var students : [StudentInformation]?
 	//is the student already on the map
 	var onTheMap : Bool?
 	//NSURLSession variable
@@ -77,13 +77,11 @@ class ParseClient: NSObject {
 	
 	//MARK: - post a student location
 	
-	func postStudentLocation(student: Student?, completionHandler:(completed: Bool?,errorString: String?) -> Void ) {
+	func postStudentLocation(student: StudentInformation?, completionHandler:(completed: Bool?,errorString: String?) -> Void ) {
 		
 		//validation
 		if let student = student {
-			print(student)
 		if let uniqueKey = student.uniqueKey, firstName = student.firstName, lastName = student.lastName, mapString = student.mapString, mediaURL = student.mediaURL, latitude = student.latitude, longitude = student.longitude {
-			print("here")
 			let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Methods.StudentLocationURL)!)
 			request.HTTPMethod = "POST"
 			request.addValue(ParseClient.Keys.ParseAppId, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAppIDHeader)
@@ -98,7 +96,6 @@ class ParseClient: NSObject {
 					return
 				}
 				if let data = data {
-					print("asdfdsaf")
 					self.parsePostStudentLocation(data: data, completionHandler: completionHandler)
 				} else {
 					completionHandler(completed: false, errorString: "Unable to post student data")
@@ -111,7 +108,7 @@ class ParseClient: NSObject {
 	
 	//MARK: - overwrite a student location
 	
-	func overwriteStudent(student: Student?, completionHandler: (completed: Bool?, errorString: String?) -> Void) {
+	func overwriteStudent(student: StudentInformation?, completionHandler: (completed: Bool?, errorString: String?) -> Void) {
 		if let student = student {
 			if let uniqueKey = student.uniqueKey, objectId = student.objectId, firstName = student.firstName, lastName = student.lastName, mapString = student.mapString, mediaURL = student.mediaURL, latitude = student.latitude, longitude = student.longitude {
 				let urlString = ParseClient.Methods.StudentLocationURL + objectId
@@ -149,6 +146,59 @@ class ParseClient: NSObject {
 		}
 	}
 	
+	//MARK: - query a student
+	
+	func queryForStudent(uniqueKey: String?, completionHandler:(data: StudentInformation?, errorString: String?) -> Void){
+		if let uniqueKey = uniqueKey {
+			let methodParameters = [
+				"where": "{\"uniqueKey\": \"\(uniqueKey)\"}"
+			]
+			let urlString = ParseClient.Methods.StudentLocationURL + escapedParameters(methodParameters)
+			if let url = NSURL(string: urlString) {
+				let request = NSMutableURLRequest(URL: url)
+				request.addValue(ParseClient.Keys.ParseAppId, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAppIDHeader)
+				request.addValue(ParseClient.Keys.ParseAPIKey, forHTTPHeaderField: ParseClient.HTTPParameters.ParseAPIKeyHeader)
+				request.HTTPMethod = "GET"
+				let task = session.dataTaskWithRequest(request) {
+					(data, response, error) in
+					if let error = error{
+						completionHandler(data: nil, errorString: error.localizedDescription)
+						return
+					}
+					if let data = data {
+						self.parseQueryRequest(data: data, completionHandler: completionHandler)
+					} else {
+						completionHandler(data: nil, errorString: "Unable to get user data")
+					}
+				};
+				task.resume()
+			}
+		}
+	}
+	
+	//MARK: - delete a student
+	func deleteStudent(objectId: String?, completionHandler:(completed: Bool?,errorString: String?) -> Void ) {
+		if objectId == nil {
+			completionHandler(completed: false, errorString: "Invalid objectId")
+		}
+		if let objectId = objectId {
+			let urlString = ParseClient.Methods.StudentLocationURL + objectId
+			let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+			request.addValue(ParseClient.Keys.ParseAppId, forHTTPHeaderField: "X-Parse-Application-Id")
+			request.addValue(ParseClient.Keys.ParseAPIKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+			request.HTTPMethod = "DELETE"
+			let task = session.dataTaskWithRequest(request) {
+				(data, response, error) in
+				if let error = error {
+					completionHandler(completed: false, errorString: error.localizedDescription)
+					return
+				}
+				completionHandler(completed: true, errorString: nil)
+			}; task.resume()
+		}
+	}
+	
+	
 	//MARK: - parse student location
 	
 	func parseStudentLocation(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
@@ -172,7 +222,6 @@ class ParseClient: NSObject {
 			if let parsedData =
 				try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject]{
 					if let _ = parsedData["objectId"] as? String {
-						print("successfully posted location")
 						completionHandler(completed: true, errorString: nil)
 						return
 					}
@@ -200,6 +249,32 @@ class ParseClient: NSObject {
 			}
 		} catch let error as NSError{
 			completionHandler(completed: false, errorString: error.localizedDescription)
+		}
+	}
+	
+	//MARK: - parse query request
+	
+	func parseQueryRequest(data data: NSData, completionHandler: (data: StudentInformation?, errorString: String?) -> Void){
+		do{
+			if let parsedData =
+				try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject]{
+					if let students = parsedData["results"] as? [[String: AnyObject]]{
+						if let student = students.first{
+							let studentToReturn = StudentInformation(dictionary: student)
+							completionHandler(data: studentToReturn, errorString: nil)
+							return
+						} else if students.isEmpty{
+							completionHandler(data: nil, errorString: nil)
+							return
+						}
+					} else {
+						completionHandler(data: nil, errorString: "Unable to retrieve student data")
+					}
+			} else {
+				completionHandler(data: nil, errorString: "Unable to retrieve student data")
+			}
+		} catch let error as NSError{
+			completionHandler(data: nil, errorString: error.localizedDescription)
 		}
 	}
 	

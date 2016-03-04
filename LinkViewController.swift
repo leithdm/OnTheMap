@@ -19,7 +19,7 @@ class LinkViewController: UIViewController {
 	
 	//MARK: - properties
 	
-	var currentStudent: Student?
+	var currentStudent: StudentInformation?
 	var ParseSharedInstance = ParseClient.sharedInstance
 	
 	//MARK: - lifecycle methods
@@ -29,6 +29,7 @@ class LinkViewController: UIViewController {
 		linkTextField.delegate = self
 		currentStudent = ParseClient.sharedInstance.currentStudent
 		activityIndicator.hidesWhenStopped = true
+		setUpActivityIndicator()
 		addAnnotationsToMap()
 	}
 	
@@ -78,10 +79,11 @@ class LinkViewController: UIViewController {
 	//MARK: - submit a new location
 	
 	func submitNewLocation() {
+		activityIndicator.startAnimating()
 		ParseSharedInstance.postStudentLocation(ParseSharedInstance.currentStudent) { (completed, errorString) in
 			if completed == true {
 				self.activityIndicator.stopAnimating()
-				self.dismissViewControllerAnimated(true, completion: nil)
+				self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 			} else {
 				if let errorString = errorString {
 					self.showAlert("Error", message: errorString)
@@ -94,7 +96,7 @@ class LinkViewController: UIViewController {
 	
 	//MARK: - overwrite location
 	
-	func overwriteLocation(){
+	func overwriteLocation() {
 		ParseSharedInstance.overwriteStudent(ParseSharedInstance.currentStudent) { (completed, errorString) in
 			if completed == true {
 				self.activityIndicator.stopAnimating()
@@ -151,6 +153,13 @@ class LinkViewController: UIViewController {
 		dispatch_async(dispatch_get_main_queue()) {
 			updates()
 		}
+	}
+	
+	//initialize the activity indicator
+	func setUpActivityIndicator() {
+		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
+		activityIndicator.hidesWhenStopped = true
+		activityIndicator.activityIndicatorViewStyle = .WhiteLarge
 	}
 	
 }

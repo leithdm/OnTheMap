@@ -6,7 +6,7 @@
 //  Copyright © 2016 Darren Leith. All rights reserved.
 //
 
-struct Student {
+struct StudentInformation {
 	
 	var objectId:String?
 	var uniqueKey: String?
@@ -44,11 +44,5 @@ struct Student {
 				self.longitude = longitude
 			}
 		}
-	}
-	
-	// Print statment for Student
-	var description: String {
-		let empty = "nil"
-		return String("Student [objectId: \((objectId == nil) ? empty : objectId!), uniqueKey: \((uniqueKey == nil) ? empty : uniqueKey!), firstName: \((firstName == nil) ? empty : firstName!), lastName: \((lastName == nil) ? empty : lastName!), mapString: \((mapString == nil) ? empty : mapString!), mediaURL: \((mediaURL == nil) ? empty : mediaURL!), latitude: \((latitude == nil) ? 0 : latitude!), longitude: \((longitude == nil) ? 0 : longitude!)]")
 	}
 }

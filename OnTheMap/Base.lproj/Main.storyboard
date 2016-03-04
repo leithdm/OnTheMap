@@ -36,7 +36,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9KU-OH-vwy">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="gL3-Qs-X9z"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="gL3-Qs-X9z">
+                            <connections>
+                                <action selector="logout:" destination="BYZ-38-t0r" id="PI0-XJ-AKM"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="refresh" id="vCh-Ha-hcs">
                                 <connections>
@@ -48,7 +52,11 @@
                                     <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="sFS-jb-EJG"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="deletePin" id="hRi-XI-EsI"/>
+                            <barButtonItem image="deletePin" id="hRi-XI-EsI">
+                                <connections>
+                                    <action selector="deleteAssignedPin:" destination="BYZ-38-t0r" id="gPt-SF-dG3"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -81,20 +89,20 @@
                                                 <rect key="frame" x="40" y="50" width="520" height="110"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY7-KM-o6l">
-                                                        <rect key="frame" x="0.0" y="0.0" width="520" height="37"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="520" height="36.5"/>
                                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Thin" family="Apple SD Gothic Neo" pointSize="28"/>
                                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studying" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pre-HS-Nks">
-                                                        <rect key="frame" x="0.0" y="37" width="520" height="37"/>
+                                                        <rect key="frame" x="0.0" y="36.5" width="520" height="37"/>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="28"/>
                                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APf-wq-w4J">
-                                                        <rect key="frame" x="0.0" y="74" width="520" height="37"/>
+                                                        <rect key="frame" x="0.0" y="73.5" width="520" height="36.5"/>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Thin" family="Apple SD Gothic Neo" pointSize="28"/>
                                                         <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -124,15 +132,15 @@
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location" textAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RkF-5v-wHr">
                                                 <rect key="frame" x="8" y="8" width="584" height="184"/>
-                                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="26"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vnw-8I-8Cz">
-                                                <rect key="frame" x="275" y="75" width="50" height="50"/>
+                                                <rect key="frame" x="260" y="60" width="80" height="80"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="BYf-wz-sx3"/>
-                                                    <constraint firstAttribute="height" constant="50" id="ckU-zi-cJI"/>
+                                                    <constraint firstAttribute="width" constant="80" id="BYf-wz-sx3"/>
+                                                    <constraint firstAttribute="height" constant="80" id="ckU-zi-cJI"/>
                                                 </constraints>
                                             </activityIndicatorView>
                                         </subviews>
@@ -202,11 +210,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="er9-e5-4eM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="167"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a link to share here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xl5-va-gpc">
-                                        <rect key="frame" x="8" y="58" width="584" height="101"/>
-                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ff4-P1-alf">
                                         <rect key="frame" x="544" y="18" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
@@ -214,6 +217,11 @@
                                             <action selector="cancelButtonPressed:" destination="bB3-w4-ome" eventType="touchUpInside" id="lAg-R7-iPC"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a URL to share !" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xl5-va-gpc">
+                                        <rect key="frame" x="8" y="58" width="584" height="101"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -228,13 +236,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qQy-Re-Rwt">
                                 <rect key="frame" x="0.0" y="166" width="600" height="434"/>
                             </mapView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="dCX-22-hfZ">
-                                <rect key="frame" x="275" y="358" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Ppx-aT-HNB"/>
-                                    <constraint firstAttribute="width" constant="50" id="ipB-bU-d3r"/>
-                                </constraints>
-                            </activityIndicatorView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-9o-bnz">
                                 <rect key="frame" x="0.0" y="501" width="600" height="99"/>
                                 <subviews>
@@ -255,6 +256,13 @@
                                     <constraint firstItem="QEL-7M-6aA" firstAttribute="centerX" secondItem="Oub-9o-bnz" secondAttribute="centerX" id="b1B-Oy-Yik"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="dCX-22-hfZ">
+                                <rect key="frame" x="260" y="343" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Ppx-aT-HNB"/>
+                                    <constraint firstAttribute="width" constant="80" id="ipB-bU-d3r"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -378,7 +386,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-gf-cS5">
                                         <rect key="frame" x="8" y="131" width="584" height="50"/>
-                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.2627450980392157" green="0.37254901960784315" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="aag-vD-0Ks"/>
                                         </constraints>
@@ -424,7 +432,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.43529411764705883" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.52549019607843139" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="KYh-gx-d1n" firstAttribute="top" secondItem="PX1-gW-iAB" secondAttribute="bottom" id="2so-Ks-cSY"/>
                             <constraint firstItem="PX1-gW-iAB" firstAttribute="leading" secondItem="R8y-y6-Pd4" secondAttribute="leading" id="AdI-tI-gSE"/>
@@ -588,7 +596,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RMn-Fg-QMn">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rxy-Rg-4jo"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rxy-Rg-4jo">
+                            <connections>
+                                <action selector="logout:" destination="YWb-Mj-H7t" id="F4c-fF-yBb"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="refresh" id="CpE-dZ-8Kf">
                                 <connections>
@@ -600,7 +612,6 @@
                                     <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="AcD-3n-Qje"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="deletePin" id="wDa-K6-S0I"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -623,6 +634,6 @@
         <image name="table" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sFS-jb-EJG"/>
+        <segue reference="AcD-3n-Qje"/>
     </inferredMetricsTieBreakers>
 </document>

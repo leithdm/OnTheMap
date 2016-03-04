@@ -18,7 +18,7 @@
 		01B78F471C7358CD00E21F73 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F461C7358CD00E21F73 /* LocationViewController.swift */; };
 		01B78F491C7358DC00E21F73 /* LinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F481C7358DC00E21F73 /* LinkViewController.swift */; };
 		01B78F4B1C7359D900E21F73 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F4A1C7359D900E21F73 /* LoginViewController.swift */; };
-		01B78F501C735A7B00E21F73 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F4F1C735A7B00E21F73 /* Student.swift */; };
+		01B78F501C735A7B00E21F73 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F4F1C735A7B00E21F73 /* StudentInformation.swift */; };
 		01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F511C73705600E21F73 /* ParseConstants.swift */; };
 		01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F541C73774300E21F73 /* UdacityClient.swift */; };
 		01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F561C73774D00E21F73 /* ParseClient.swift */; };
@@ -60,7 +60,7 @@
 		01B78F461C7358CD00E21F73 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationViewController.swift; path = ../LocationViewController.swift; sourceTree = "<group>"; };
 		01B78F481C7358DC00E21F73 /* LinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkViewController.swift; path = ../LinkViewController.swift; sourceTree = "<group>"; };
 		01B78F4A1C7359D900E21F73 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
-		01B78F4F1C735A7B00E21F73 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		01B78F4F1C735A7B00E21F73 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		01B78F511C73705600E21F73 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = OnTheMap/ParseConstants.swift; sourceTree = "<group>"; };
 		01B78F541C73774300E21F73 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		01B78F561C73774D00E21F73 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		01B78F4E1C735A5800E21F73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				01B78F4F1C735A7B00E21F73 /* Student.swift */,
+				01B78F4F1C735A7B00E21F73 /* StudentInformation.swift */,
 				01B78ED51C73276500E21F73 /* AppDelegate.swift */,
 				01B78F531C73771200E21F73 /* Clients */,
 			);
@@ -347,7 +347,7 @@
 				01B78F491C7358DC00E21F73 /* LinkViewController.swift in Sources */,
 				01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */,
 				01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */,
-				01B78F501C735A7B00E21F73 /* Student.swift in Sources */,
+				01B78F501C735A7B00E21F73 /* StudentInformation.swift in Sources */,
 				01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */,
 				01B78F471C7358CD00E21F73 /* LocationViewController.swift in Sources */,
 				01B78F521C73705600E21F73 /* ParseConstants.swift in Sources */,
@@ -499,6 +499,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darrenmartinleith.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -512,6 +513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darrenmartinleith.OnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

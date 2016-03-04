@@ -61,7 +61,7 @@ class LinkViewController: UIViewController {
 		if let urlString = linkTextField.text {
 			if confirmURL(urlString) {
 				ParseSharedInstance.currentStudent?.mediaURL = "\(urlString)"
-				if let overwrite = ParseSharedInstance.studentAlreadyPosted { //has the student already posted
+				if let overwrite = ParseSharedInstance.onTheMap { //has the student already posted
 					if overwrite {
 						self.overwriteLocation()
 					} else if overwrite == false {

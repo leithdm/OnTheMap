@@ -31,8 +31,9 @@ class MapViewController: UIViewController {
 		uniqueKey = ParseClient.sharedInstance.currentStudent?.uniqueKey
 	}
 	
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		getStudentsFromServer()
 	}
 	
 	//MARK: - get students from server
@@ -46,7 +47,7 @@ class MapViewController: UIViewController {
 					studentArray.append(StudentInformation(dictionary: studentData))
 				}
 				if studentArray.count > 0 {
-					dispatch_async(dispatch_get_main_queue()) {
+					self.performUIUpdatesOnMain({ () -> Void in
 						ParseClient.sharedInstance.students = studentArray
 						if self.mapView.annotations.count > 0 {
 							self.mapView.removeAnnotations(self.mapView.annotations)
@@ -54,13 +55,13 @@ class MapViewController: UIViewController {
 						} else {
 							self.addAnnotationsToMap()
 						}
-					}
+					})
 					self.stopActivityIndicator()
 				}
 			} else {
-				dispatch_async(dispatch_get_main_queue()) {
+				self.performUIUpdatesOnMain({ () -> Void in
 					self.stopActivityIndicator()
-				}
+				})
 				if let errorString = error {
 					print(errorString.localizedDescription)
 					self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
@@ -71,10 +72,30 @@ class MapViewController: UIViewController {
 		}
 	}
 	
+	//MARK: - add a pin to the map
+	
+	@IBAction func addPinPressed(sender: AnyObject) {
+		let parseClient = ParseClient.sharedInstance
+		parseClient.queryForStudent(uniqueKey!) { student, errorString in
+			if let student = student {
+				parseClient.onTheMap = true
+				parseClient.currentStudent = student
+			} else {
+				parseClient.onTheMap = false
+			}
+			if student == nil {
+				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let locationViewController = storyboard.instantiateViewControllerWithIdentifier("LocationViewController") as? LocationViewController
+				self.presentViewController(locationViewController!, animated: true, completion: nil)
+			} else {
+				self.showOverwriteMessage("Hi \(student!.firstName!). You have already posted a student location. Would you like to overwrite this location?", student: student)
+			}
+		}
+	}
+	
 	//MARK: - add annotations to the map
 	
 	func addAnnotationsToMap() {
-		
 		performUIUpdatesOnMain {
 			if let students = ParseClient.sharedInstance.students {
 				var annotations = [MKAnnotation]()
@@ -106,7 +127,7 @@ class MapViewController: UIViewController {
 	}
 	
 	//MARK: - delete the current pin location for logged-in student
-
+	
 	@IBAction func deleteAssignedPin(sender: AnyObject) {
 		activityIndicator.startAnimating()
 		let parseClient = ParseClient.sharedInstance
@@ -145,7 +166,7 @@ class MapViewController: UIViewController {
 		ParseClient.sharedInstance.currentStudent = nil
 		self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil )
 	}
-
+	
 	//reload the page
 	@IBAction func reloadPage(sender: UIBarButtonItem) {
 		getStudentsFromServer()
@@ -153,7 +174,7 @@ class MapViewController: UIViewController {
 	
 	//MARK: - helper methods
 	
-	//show an AlertViewController
+	//show an alert view
 	func showAlertViewController(title: String? , message: String?) {
 		performUIUpdatesOnMain {
 			self.stopActivityIndicator()
@@ -163,6 +184,22 @@ class MapViewController: UIViewController {
 				errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(errorAlert, animated: true, completion: nil)
 			}
+		}
+	}
+	
+	//over write message
+	func showOverwriteMessage( message: String?, student: StudentInformation?) {
+		performUIUpdatesOnMain { () -> Void in
+			self.activityIndicator.stopAnimating()
+			let alert =
+			UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+			alert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default, handler: { alert -> Void in
+				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let locationViewController = storyboard.instantiateViewControllerWithIdentifier("LocationViewController") as? LocationViewController
+				self.presentViewController(locationViewController!, animated: true, completion: nil)
+			}))
+			alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+			self.presentViewController(alert, animated: true, completion: nil)
 		}
 	}
 	
@@ -196,7 +233,6 @@ extension MapViewController: MKMapViewDelegate {
 	
 	//view for animation
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-		
 		let reuseId = "pin"
 		var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
 		if pinView == nil { //if it cant find a reusable one, make a new annotation view
@@ -215,7 +251,6 @@ extension MapViewController: MKMapViewDelegate {
 	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 		if control == view.rightCalloutAccessoryView {
 			let app = UIApplication.sharedApplication()
-			
 			if let urlString = view.annotation?.subtitle! {
 				if let url = NSURL(string: urlString) {
 					if app.canOpenURL(url) {

@@ -20,6 +20,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	var arrayStudents: [StudentInformation]?
 	var sharedSession: ParseClient?
+	var uniqueKey: String?
 	
 	//MARK: - lifecycle methods
 	
@@ -28,12 +29,13 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		sharedSession = ParseClient.sharedInstance
 		arrayStudents = sharedSession?.students
 		setUpActivityIndicator()
+		uniqueKey = ParseClient.sharedInstance.currentStudent?.uniqueKey
 		
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(true)
-		tableView.reloadData()
+		getStudentsFromServer()
 	}
 	
 	
@@ -132,9 +134,47 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil )
 	}
 	
+	
+	//MARK: - add a pin to the map
+	
+	@IBAction func addPinPressed(sender: AnyObject) {
+		let parseClient = ParseClient.sharedInstance
+		parseClient.queryForStudent(uniqueKey!) { student, errorString in
+			if let student = student {
+				parseClient.onTheMap = true
+				parseClient.currentStudent = student
+			} else {
+				parseClient.onTheMap = false
+			}
+			if student == nil {
+				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let locationViewController = storyboard.instantiateViewControllerWithIdentifier("LocationViewController") as? LocationViewController
+				self.presentViewController(locationViewController!, animated: true, completion: nil)
+			} else {
+				self.showOverwriteMessage("Hi \(student!.firstName!). You have already posted a student location. Would you like to overwrite this location?", student: student)
+			}
+		}
+	}
+	
+	//over write message
+	func showOverwriteMessage( message: String?, student: StudentInformation?) {
+		performUIUpdatesOnMain { () -> Void in
+			self.activityIndicator.stopAnimating()
+			let alert =
+			UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+			alert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default, handler: { alert -> Void in
+				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let locationViewController = storyboard.instantiateViewControllerWithIdentifier("LocationViewController") as? LocationViewController
+				self.presentViewController(locationViewController!, animated: true, completion: nil)
+			}))
+			alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+			self.presentViewController(alert, animated: true, completion: nil)
+		}
+	}
+	
 	//MARK: - helper methods
 	
-	//show an AlertViewController
+	//show an alert view
 	func showAlertViewController(title: String? , message: String?) {
 		performUIUpdatesOnMain {
 			self.activityIndicator.stopAnimating()

@@ -10,7 +10,6 @@
 		01B78ED61C73276500E21F73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78ED51C73276500E21F73 /* AppDelegate.swift */; };
 		01B78ED81C73276500E21F73 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78ED71C73276500E21F73 /* MapViewController.swift */; };
 		01B78EDB1C73276500E21F73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78ED91C73276500E21F73 /* Main.storyboard */; };
-		01B78EDD1C73276500E21F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B78EDC1C73276500E21F73 /* Assets.xcassets */; };
 		01B78EE01C73276500E21F73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B78EDE1C73276500E21F73 /* LaunchScreen.storyboard */; };
 		01B78EEB1C73276500E21F73 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78EEA1C73276500E21F73 /* OnTheMapTests.swift */; };
 		01B78EF61C73276500E21F73 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78EF51C73276500E21F73 /* OnTheMapUITests.swift */; };
@@ -23,6 +22,7 @@
 		01B78F551C73774300E21F73 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F541C73774300E21F73 /* UdacityClient.swift */; };
 		01B78F571C73774D00E21F73 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F561C73774D00E21F73 /* ParseClient.swift */; };
 		01B78F5F1C73780E00E21F73 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */; };
+		01F14D9C1C89E89E00A8E1A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F14D9B1C89E89E00A8E1A5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,6 @@
 		01B78ED51C73276500E21F73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = OnTheMap/AppDelegate.swift; sourceTree = "<group>"; };
 		01B78ED71C73276500E21F73 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		01B78EDA1C73276500E21F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		01B78EDC1C73276500E21F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01B78EDF1C73276500E21F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B78EE11C73276500E21F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01B78EE61C73276500E21F73 /* OnTheMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +64,7 @@
 		01B78F541C73774300E21F73 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		01B78F561C73774D00E21F73 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		01B78F5E1C73780E00E21F73 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		01F14D9B1C89E89E00A8E1A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				01B78F4A1C7359D900E21F73 /* LoginViewController.swift */,
-				01B78F431C734D5900E21F73 /* ListTableViewController.swift */,
 				01B78ED71C73276500E21F73 /* MapViewController.swift */,
+				01B78F431C734D5900E21F73 /* ListTableViewController.swift */,
 				01B78F461C7358CD00E21F73 /* LocationViewController.swift */,
 				01B78F481C7358DC00E21F73 /* LinkViewController.swift */,
 			);
@@ -156,7 +156,7 @@
 		01B78F4C1C7359F600E21F73 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				01B78EDC1C73276500E21F73 /* Assets.xcassets */,
+				01F14D9B1C89E89E00A8E1A5 /* Assets.xcassets */,
 				01B78ED91C73276500E21F73 /* Main.storyboard */,
 				01B78EDE1C73276500E21F73 /* LaunchScreen.storyboard */,
 			);
@@ -315,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01B78EE01C73276500E21F73 /* LaunchScreen.storyboard in Resources */,
-				01B78EDD1C73276500E21F73 /* Assets.xcassets in Resources */,
+				01F14D9C1C89E89E00A8E1A5 /* Assets.xcassets in Resources */,
 				01B78EDB1C73276500E21F73 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

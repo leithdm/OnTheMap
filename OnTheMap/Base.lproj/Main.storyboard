@@ -49,7 +49,7 @@
                             </barButtonItem>
                             <barButtonItem image="addPin" id="hva-uP-xNt">
                                 <connections>
-                                    <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="sFS-jb-EJG"/>
+                                    <action selector="addPinPressed:" destination="BYZ-38-t0r" id="P3X-6K-pNq"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="deletePin" id="hRi-XI-EsI">
@@ -483,7 +483,7 @@
         <!--Navigation Controller-->
         <scene sceneID="g1N-bN-oLz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bmC-X8-xg0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapViewNavController" automaticallyAdjustsScrollViewInsets="NO" id="bmC-X8-xg0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="map" selectedImage="map" id="w9t-gN-wgU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="czV-MB-bu8">
@@ -609,7 +609,7 @@
                             </barButtonItem>
                             <barButtonItem image="addPin" id="Vvx-Jd-AYw">
                                 <connections>
-                                    <segue destination="jqv-Oq-Asj" kind="presentation" identifier="presentLocationViewController" id="AcD-3n-Qje"/>
+                                    <action selector="addPinPressed:" destination="YWb-Mj-H7t" id="4bf-TN-P0m"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -633,7 +633,4 @@
         <image name="refresh" width="22" height="22"/>
         <image name="table" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="AcD-3n-Qje"/>
-    </inferredMetricsTieBreakers>
 </document>

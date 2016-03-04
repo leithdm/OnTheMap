@@ -57,7 +57,6 @@ class LoginViewController: UIViewController {
 				self.activityIndicator.stopAnimating()
 				self.performSegueWithIdentifier("presentMapView", sender: self)
 			})
-			
 		})
 	}
 	

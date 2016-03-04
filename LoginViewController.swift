@@ -37,10 +37,13 @@ class LoginViewController: UIViewController {
 	
 	@IBAction func login(sender: UIButton) {
 		//guard against blank username and passwords
-		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
-			showAlertViewController("Login Error", message: "Please enter both your email and password")
-			return
-		}
+//		guard let email = emailTextField.text, password = passwordTextField.text where email != "" && password != "" else {
+//			showAlertViewController("Login Error", message: "Please enter both your email and password")
+//			return
+//		}
+		
+		let email = "leithdm@gmail.com"
+		let password = "vae9Buqu"
 		
 		activityIndicator.startAnimating()
 		

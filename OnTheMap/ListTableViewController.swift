@@ -76,7 +76,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		}
 	}
 	
-	//MARK: - reload data using button
+	//MARK: - reload data using bar button
 	
 	@IBAction func reloadData(sender: UIBarButtonItem) {
 		getStudentsFromServer()
@@ -91,6 +91,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		if let sharedSession = sharedSession {
 			sharedSession.getStudentLocations { (result, error) -> Void in
 				
+				guard error == nil else {
+					self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
+					self.setActivityViewHidden(true)
+					return
+				}
+				
 				if let students = result as? [[String: AnyObject]] {
 					var studentArray = [Student]()
 					for studentData in students {
@@ -98,28 +104,18 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 					}
 					
 					if studentArray.count > 0 {
-						dispatch_async(dispatch_get_main_queue()) {
+						self.performUIUpdatesOnMain({ () -> Void in
 							self.activityIndicator.stopAnimating()
 							self.setActivityViewHidden(true)
 							self.tableView.reloadData()
-						}
+						})
 					}
-				} else {
-					dispatch_async(dispatch_get_main_queue()) {
-						self.activityIndicator.stopAnimating()
-						self.setActivityViewHidden(true)
-					}
-					if let errorString = error {
-						print(errorString.localizedDescription)
-						self.showAlertViewController("Oops!", message: "There was an error connecting to the internet")
-					} else {
-						self.showAlertViewController("Error", message: "Unable to retrieve data")
-					}
-					self.setActivityViewHidden(true)
 				}
 			}
 		}
 	}
+	
+	//MARK: - helper methods
 	
 	//show an AlertViewController
 	func showAlertViewController(title: String? , message: String?) {
@@ -133,6 +129,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
 		}
 	}
 	
+	//hide the activity indicator
 	func setActivityViewHidden(isHidden: Bool) {
 		viewForActivityIndicator.hidden = isHidden
 	}

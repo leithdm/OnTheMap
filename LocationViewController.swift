@@ -94,10 +94,10 @@ class LocationViewController: UIViewController {
 						self.showAlert("Whoops!", message:"Please choose a more specific location")
 					}
 				} else {
-					self.showAlert("Whoops!", message:"Unable to find location")
+					self.showAlert("Whoops!", message:"Unable to find that location")
 				}
 			} else {
-				self.showAlert("Whoops!", message: "Unable to find location")
+				self.showAlert("Whoops!", message: "Unable to find that location")
 			}
 		}
 	}
@@ -114,6 +114,7 @@ class LocationViewController: UIViewController {
 	//Shows an alert
 	func showAlert(title: String? , message: String?) {
 		performUIUpdatesOnMain { () -> Void in
+			self.activityIndicator.stopAnimating()
 			let errorAlert =
 			UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
 			errorAlert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))

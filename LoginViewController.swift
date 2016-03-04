@@ -67,10 +67,9 @@ class LoginViewController: UIViewController {
 				
 				/* GUARD: Was there any data returned? */
 				guard let result = result else {
-					print("no data was received")
+					print("no data was received from getPublicUserData()")
 					return
 				}
-				
 				self.parseClient.currentStudent!.firstName = result["firstName"] as? String
 				self.parseClient.currentStudent!.lastName = result["lastName"] as? String
 			})
@@ -90,7 +89,7 @@ class LoginViewController: UIViewController {
 	
 	//MARK: - helper methods
 	
-	//show an AlertViewController
+	//show an alert view controller
 	func showAlertViewController(title: String? , message: String?) {
 		performUIUpdatesOnMain {
 			self.stopActivityIndicator()

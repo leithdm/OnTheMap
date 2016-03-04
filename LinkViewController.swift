@@ -36,7 +36,7 @@ class LinkViewController: UIViewController {
 	//MARK: - add annotations to the map
 	
 	func addAnnotationsToMap() {
-		dispatch_async(dispatch_get_main_queue()){
+		performUIUpdatesOnMain { () -> Void in
 			if let student = self.currentStudent, lon = student.longitude, lat = student.latitude {
 				let lat = CLLocationDegrees(Double((lat)))
 				let long = CLLocationDegrees(Double((lon)))
@@ -48,36 +48,54 @@ class LinkViewController: UIViewController {
 				self.mapView.setCamera(camera, animated: true)
 			} else {
 				//cant get a reference to the student
-				self.showAlert("Error", message: "Internal error: unable to parse student data")
+				self.showAlert("Oops.!", message: "Unable to parse student data")
 			}
 		}
 	}
 	
 	//MARK: - submit location and URL
 	
-	@IBAction func submitButtonPressed(sender: AnyObject) {
+	@IBAction func submitLocation(sender: AnyObject) {
 		self.activityIndicator.startAnimating()
-		if let urlString = linkTextField.text{
-			if verifyUrl(urlString){
-				ParseClient.sharedInstance.mediaURL = "\(urlString)"
-				if let overwrite = ParseClient.sharedInstance.studentAlreadyPosted {
+		if let urlString = linkTextField.text {
+			if confirmURL(urlString) {
+				ParseSharedInstance.currentStudent?.mediaURL = "\(urlString)"
+				if let overwrite = ParseSharedInstance.studentAlreadyPosted { //has the student already posted
 					if overwrite {
-						//OVERWRITE
-//						self.overwriteLocationObject()
-					} else if overwrite == false{
-						//ADD NEW LOCATION OBJECT
-						self.addLocationObject()
+						self.overwriteLocation()
+					} else if overwrite == false {
+						self.submitNewLocation()
 					}
 				}
-			} else { self.showAlert("Error", message:"Invalid link") }
-		} else { self.showAlert("Error", message:"TextField is empty") }
+			} else {
+				self.showAlert("Oops..!", message:"Thats not a valid https link")
+			}
+		} else {
+			self.showAlert("Whoops!", message:"Please enter a link")
+		}
 	}
 	
+	//MARK: - submit a new location
 	
-	/*
-	func overwriteLocationObject(){
-		ParseSharedInstance.overwriteStudent(ParseSharedInstance.currentStudent) {
-			(completed, errorString) in
+	func submitNewLocation() {
+		ParseSharedInstance.postStudentLocation(ParseSharedInstance.currentStudent) { (completed, errorString) in
+			if completed == true {
+				self.activityIndicator.stopAnimating()
+				self.dismissViewControllerAnimated(true, completion: nil)
+			} else {
+				if let errorString = errorString {
+					self.showAlert("Error", message: errorString)
+				}else {
+					self.showAlert("Error", message:"Unable to sumbit the location")
+				}
+			}
+		}
+	}
+	
+	//MARK: - overwrite location
+	
+	func overwriteLocation(){
+		ParseSharedInstance.overwriteStudent(ParseSharedInstance.currentStudent) { (completed, errorString) in
 			if completed == true {
 				self.activityIndicator.stopAnimating()
 				self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -90,24 +108,9 @@ class LinkViewController: UIViewController {
 			}
 		}
 	}
-*/
+
 	
-	func addLocationObject(){
-		ParseSharedInstance.postStudentLocation(ParseSharedInstance.currentStudent) {
-			(completed, errorString) in
-			if completed == true {
-				self.activityIndicator.stopAnimating()
-				self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-			} else {
-				if let errorString = errorString {
-					self.showAlert("Error", message: errorString)
-				}else {
-					self.showAlert("Error", message:"Unable to sumbit student data")
-				}
-			}
-		}
-	}
-	
+	//MARK: - cancel 
 	
 	@IBAction func cancelButtonPressed(sender: AnyObject) {
 		dismissViewControllerAnimated(true, completion: nil)
@@ -116,7 +119,7 @@ class LinkViewController: UIViewController {
 	//MARK: - helper methods
 	
 	//verify that the URL is of the correct syntax
-	func verifyUrl(urlString: String?) ->Bool {
+	func confirmURL(urlString: String?) ->Bool {
 		if let urlString = urlString {
 			let pattern = "^(https?:\\/\\/)([a-zA-Z0-9_\\-~]+\\.)+[a-zA-Z0-9_\\-~\\/\\.]+$"
 			if let _ = urlString.rangeOfString(pattern, options: .RegularExpressionSearch){
@@ -132,14 +135,21 @@ class LinkViewController: UIViewController {
 	
 	//show an alert controller
 	func showAlert(title: String? , message: String?) {
-		dispatch_async(dispatch_get_main_queue()){
+		performUIUpdatesOnMain { () -> Void in
 			self.activityIndicator.stopAnimating()
 			if title != nil && message != nil {
 				let errorAlert =
 				UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-				errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+				errorAlert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(errorAlert, animated: true, completion: nil)
 			}
+		}
+	}
+	
+	//run on main thread
+	func performUIUpdatesOnMain(updates: () -> Void) {
+		dispatch_async(dispatch_get_main_queue()) {
+			updates()
 		}
 	}
 	
@@ -155,7 +165,7 @@ extension LinkViewController: UITextFieldDelegate {
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		if linkTextField.isFirstResponder() && linkTextField.text!.isEmpty == false{
+		if linkTextField.isFirstResponder() && linkTextField.text!.isEmpty == false {
 			linkTextField.resignFirstResponder()
 		}
 		return false

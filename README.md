@@ -1,5 +1,4 @@
-#App for displaying students locations on a map, along with their pin annotations - a Udacity Project
-
+#App for displaying students locations on a map, along with their pin annotations.
 # OnTheMap features:
 
 - Authenticate with Udacity RESTful API
